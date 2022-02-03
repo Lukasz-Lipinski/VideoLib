@@ -1,0 +1,53 @@
+@use '_variables' as *;
+@use "mixins" as *;
+@use "classes" as *;
+
+.signup {
+  display: flex;
+  justify-content: center;
+
+  @media only screen and (max-width: 846px) {
+    flex-wrap: wrap;
+  }
+ 
+
+  button {
+    @extend %button;
+    border: none;
+    border-radius: 0;
+    font-size: 1.4rem;
+
+    @media only screen and (max-width: 846px) {
+      margin-top: 20px;
+    }
+  }
+
+  button:hover {
+    @extend %button-hover;
+  }
+  button:active{
+    @extend %button-active;
+  }
+
+  &--emailAddress {
+
+    label { 
+      position: absolute;
+      font-size: 1rem;
+      color: $grey;
+      padding: 6px 0 0 10px;
+      font-weight: bold;
+    }
+
+    input {
+    font-size: 1.5rem;
+    padding: 1.8rem 0.8rem 1.1rem;
+    width: 500px;
+    border: none;
+
+      @media only screen and (max-width: 591px) {
+        width: 100%;
+      }
+    }     
+   }
+}

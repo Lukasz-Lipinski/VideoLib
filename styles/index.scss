@@ -1,0 +1,19 @@
+@use '_variables' as *;
+@use "mixins" as *;
+
+@use "_nav";
+@use "signup";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 1.3rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../public/backgroundImg.jpg');
+  color: $white;
+}
+
+.container {
+  padding: 10% 20% 0;
+  
+  @include allHeaders;
+}

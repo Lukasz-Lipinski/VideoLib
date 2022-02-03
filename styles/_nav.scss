@@ -1,0 +1,24 @@
+@use "variables" as *;
+@use "classes" as *;
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1.2rem 1.5rem;
+
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  a:nth-child(even) {
+    @extend %button;
+  }
+
+  a:first-child {
+    color: $secondary-color;
+    font-weight: bolder;
+    font-size: 2.8rem;
+  }
+}

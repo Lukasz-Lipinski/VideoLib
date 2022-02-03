@@ -10,6 +10,7 @@ export const data = {
     container: "container",
     signup: "signup",
     benefits: "benefits",
+    FAQ: "faq",
   },
   content: {
     homepage: {
@@ -41,6 +42,12 @@ export const data = {
             "Send children on adventures with their favourite characters in a space made just for them – free with your membership.",
           src: "",
         },
+      ],
+      faq: [
+        { question: "", answear: "" },
+        { question: "", answear: "" },
+        { question: "", answear: "" },
+        { question: "", answear: "" },
       ],
     },
   },

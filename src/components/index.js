@@ -5,4 +5,5 @@ export { default as Form } from "./Form/Form";
 export { default as Signup } from "./Signup/Signup";
 export { default as Footer } from "./Footer/Footer";
 export { default as Benefits } from "./Benefits/Benefits";
-export { default as Container } from "./Benefits/Container";
+export { default as Container } from "./Container";
+export { default as FAQ } from "./FAQ/FAQ.js";

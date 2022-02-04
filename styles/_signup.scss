@@ -5,11 +5,13 @@
 .signup {
   display: flex;
   justify-content: center;
+  padding: 0 10%;
+  margin-bottom: 10%;
 
-  @media only screen and (max-width: 846px) {
+  @media only screen and (max-width: 992px) {
     flex-wrap: wrap;
+    padding: 0 20%;
   }
- 
 
   button {
     @extend %button;
@@ -17,20 +19,26 @@
     border-radius: 0;
     font-size: 1.4rem;
 
-    @media only screen and (max-width: 846px) {
+    @media only screen and (max-width: 992px) {
       margin-top: 20px;
+      padding: 10px 20px; 
     }
   }
 
   button:hover {
     @extend %button-hover;
   }
+
   button:active{
     @extend %button-active;
   }
 
   &--emailAddress {
 
+    @media only screen and (max-width: 576px) {
+      width: 100%;
+    }
+    
     label { 
       position: absolute;
       font-size: 1rem;
@@ -40,14 +48,15 @@
     }
 
     input {
-    font-size: 1.5rem;
-    padding: 1.8rem 0.8rem 1.1rem;
-    width: 500px;
-    border: none;
+      font-size: 1.5rem;
+      padding: 1.8rem 0.8rem 1.1rem;
+      border: none;
+      width: 500px;
 
-      @media only screen and (max-width: 591px) {
+      @media only screen and (max-width: 576px) {
         width: 100%;
       }
-    }     
-   }
+    }
+
+  }
 }

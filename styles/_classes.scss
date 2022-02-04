@@ -17,3 +17,14 @@
 %button-active {
   background-color: $secondary-color-dark;
 }
+
+%list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    background-color: $black;
+    padding: 6% 10%;
+  }
+}

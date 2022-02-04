@@ -3,9 +3,18 @@
   @for $i from 1 through 6 {
      #{h+$i} {
         padding-block: 20px;
+        padding-inline: 25%;
         text-align: center;
         max-width: 80%;
         margin: auto;
+
+        @media only screen and (max-width: 748px) {
+         padding-block: 20px;
+         padding-inline: 15%;
+         text-align: center;
+         max-width: 80%;
+         margin: auto;
+        }
      }
   }
 }

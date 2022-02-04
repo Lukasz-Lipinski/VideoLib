@@ -16,7 +16,11 @@ function Container(props) {
       {isFAQ ? (
         <>
           <h3>{question}</h3>
-          <TiPlusOutline data-testid="icon" onClick={handleClick} />
+          <TiPlusOutline
+            className={`active--${isAnswear}`}
+            data-testid="icon"
+            onClick={handleClick}
+          />
           {isAnswear ? <p>{answear}</p> : null}
         </>
       ) : (

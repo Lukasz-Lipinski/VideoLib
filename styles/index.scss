@@ -18,5 +18,14 @@ body {
 
   .benefits {
     @extend %list;
+
+    li {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .faq {
+    @extend %list;
   }
 }

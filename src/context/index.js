@@ -22,25 +22,25 @@ export const data = {
           header: "Enjoy on your TV.",
           details:
             "Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.",
-          src: "",
+          src: "/image--1.jpg",
         },
         {
           header: "Download your programmes to watch offline.",
           details:
             "Save your favourites easily and always have something to watch.",
-          src: "",
+          src: "/image--2.jpg",
         },
         {
           header: "Watch everywhere.",
           details:
             "Stream unlimited films and TV programmes on your phone, tablet, laptop and TV without paying more.        ",
-          src: "",
+          src: "/image--3.png",
         },
         {
           header: "Create profiles for children.",
           details:
             "Send children on adventures with their favourite characters in a space made just for them – free with your membership.",
-          src: "",
+          src: "/image--4.png",
         },
       ],
       faq: [

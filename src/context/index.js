@@ -41,6 +41,7 @@ export const data = {
           details:
             "Send children on adventures with their favourite characters in a space made just for them – free with your membership.",
           src: "/image--4.png",
+          last: "last",
         },
       ],
       faq: [

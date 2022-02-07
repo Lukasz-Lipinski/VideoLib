@@ -19,9 +19,24 @@ body {
   .benefits {
     @extend %list;
 
+    &--text {
+      width: 50%;
+      text-align: justify;
+
+      @media only screen and (max-width: 948px){
+        width:100%;
+      }
+    }
+
     li {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      padding: 6rem 10rem;
+
+      @media only screen and (max-width: 948px) {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
   }
 

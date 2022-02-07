@@ -1,3 +1,4 @@
+import React from "react";
 import { data } from "./index";
 
 export const getContentForSite = (key) => {

@@ -24,6 +24,16 @@ body {
       padding-inline: 0;
       margin: 0;
     }
+    .evenComponent {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      @media only screen and (max-width: 948px) {
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+      }
+    }
 
     &--text {
       width: 50%;

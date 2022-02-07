@@ -10,7 +10,7 @@ function Container(props) {
   const [isAnswear, setIsAnswear] = React.useState(false);
 
   const { classes } = React.useContext(MyContext);
-  const { benefits } = classes;
+  const { benefits, FAQ } = classes;
 
   const EvenComponent = () => {
     return (
@@ -46,13 +46,15 @@ function Container(props) {
 
   const FAQList = () => (
     <>
-      <h3>{question}</h3>
-      <TiPlusOutline
-        className={`active--${isAnswear}`}
-        data-testid="icon"
-        onClick={handleClick}
-      />
-      {isAnswear ? <p>{answear}</p> : null}
+      <div className={`${FAQ}--element`}>
+        <h3>{question}</h3>
+        <TiPlusOutline
+          className={`active--${isAnswear}`}
+          data-testid="icon"
+          onClick={handleClick}
+        />
+      </div>
+      {isAnswear ? <p className={`${FAQ}--answear`}>{answear}</p> : null}
     </>
   );
 

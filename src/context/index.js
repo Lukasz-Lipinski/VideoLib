@@ -33,7 +33,7 @@ export const data = {
         {
           header: "Watch everywhere.",
           details:
-            "Stream unlimited films and TV programmes on your phone, tablet, laptop and TV without paying more.        ",
+            "Stream unlimited films and TV programmes on your phone, tablet, laptop and TV without paying more.",
           src: "/image--3.png",
         },
         {

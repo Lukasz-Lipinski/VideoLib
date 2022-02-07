@@ -62,5 +62,38 @@ body {
 
   .faq {
     @extend %list;
+
+    h3 {
+      padding: 0;
+      margin: 0;
+    }
+
+    li:first-child {
+      padding-top: 5%;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      padding-block: 10px;
+    }
+
+    &--element {
+      width: 65%;
+      padding: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $primary-color;
+    }
+
+    &--answear {
+      border-top: 2px solid black;
+      background-color: $primary-color;
+      width: 65%;
+      padding: 25px;
+      margin: 0;
+    }
   }
 }

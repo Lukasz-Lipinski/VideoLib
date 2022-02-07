@@ -19,9 +19,14 @@ body {
   .benefits {
     @extend %list;
 
+    h3 {
+      text-align: left;
+      padding-inline: 0;
+      margin: 0;
+    }
+
     &--text {
       width: 50%;
-      text-align: justify;
 
       @media only screen and (max-width: 948px){
         width:100%;
@@ -32,11 +37,16 @@ body {
       display: flex;
       justify-content: space-between;
       padding: 6rem 10rem;
+      border-top: 8px solid $border;
 
       @media only screen and (max-width: 948px) {
         flex-wrap: wrap;
         justify-content: center;
       }
+    }
+
+    li:last-child {
+      border-bottom: 8px solid $border;
     }
   }
 

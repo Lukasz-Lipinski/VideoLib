@@ -5,13 +5,28 @@ import { GrFacebook } from "react-icons/gr";
 
 function FormContainer() {
   return (
-    <Formik initialValues={{ email: "", password: "" }}>
+    <Formik
+      initialValues={{ email: "", password: "" }}
+      validate={(values) => {
+        const emailConition = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        const errors = {};
+        if (!values.email) errors.email = "the field is required";
+        else if (emailConition.test(values.email))
+          errors.email = "An email is incorrected";
+
+        if (!values.password) errors.password = "the field is required";
+
+        return errors;
+      }}
+    >
       {() => (
         <Form className="form">
           <h2>Sign In</h2>
-          <Field type="text" placeholder="Email or phone number" />
-          <Field type="password" placeholder="Password" />
-          <button>Sign in</button>
+          <Field type="text" placeholder="Email or phone number" name="email" />
+          <ErrorMessage component="div" name="email" />
+          <Field type="password" placeholder="Password" name="password" />
+          <ErrorMessage component="div" name="password" />
+          <button type="submit">Sign in</button>
           <div className="form--options">
             <label htmlFor="rememberMe">Remember me</label>
             <Field id="rememberMe" type="checkbox" name="remeberMe" />

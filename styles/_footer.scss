@@ -3,11 +3,40 @@
 @use "animations" as *;
 
 .footer {
-  padding: 4rem 10%;
+  padding: 4rem 15%;
   background-color: black;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: flex-start;
+
+  @media only screen and (max-width: 768px) {
+    flex-wrap: wrap;
+  }
+  
+  div{
+    padding-right: 15%;
+    @media only screen and (max-width: 768px) {
+      padding: 8% 2%;
+    }
+  }
+
+  div:last-child {
+    padding-right: 0px;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    list-style: none;
+    padding-block: 10px;
+  }
   
   a {
-    color: $border;
+    font-weight: bold;
+    color: $primary-color;
     text-decoration: none;
   }
 

@@ -1,5 +1,7 @@
 import React from "react";
 
+import { getContentForSite } from "../context/functions";
+
 import {
   Layout,
   Navigation,
@@ -9,7 +11,6 @@ import {
   Footer,
   FAQ,
 } from "../components";
-import { getContentForSite } from "../context/functions";
 
 export async function getStaticProps() {
   const homepage = getContentForSite("homepage");

@@ -1,0 +1,17 @@
+@use '_variables' as *;
+@use "mixins" as *;
+@use "animations" as *;
+
+.footer {
+  padding: 4rem 10%;
+  background-color: black;
+  
+  a {
+    color: $border;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}

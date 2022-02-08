@@ -13,6 +13,28 @@ export const data = {
     FAQ: "faq",
   },
   content: {
+    footer: {
+      homepageFooter: {
+        links: [
+          { label: "FAQ", href: "/" },
+          { label: "Investor Relations", href: "/" },
+          { label: "Ways to Watch", href: "/" },
+          { label: "Corporate Information", href: "/" },
+          { label: "Help Center", href: "/" },
+          { label: "Jobs", href: "/" },
+          { label: "Terms of Use", href: "/" },
+          { label: "Contact Us", href: "/" },
+          { label: "Account", href: "/" },
+          { label: "Redeem gift", href: "/" },
+          { label: "Privacy", href: "/" },
+          { label: "Speed Test", href: "/" },
+          { label: "Media Centre", href: "/" },
+          { label: "Buy gift cards", href: "/" },
+          { label: "Cookie Preferences", href: "/" },
+          { label: "Legal Notices", href: "/" },
+        ],
+      },
+    },
     homepage: {
       header: "Unlimited films, TV programmes, cartoons, anime and more.",
       p1: "Watch anywhere where you want. Cancel at any time. ",

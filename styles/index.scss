@@ -1,8 +1,10 @@
 @use '_variables' as *;
 @use "mixins" as *;
+@use "animations" as *;
 
 @use "_nav";
 @use "signup";
+@use "footer";
 
 body {
   margin: 0;
@@ -39,7 +41,7 @@ body {
       width: 50%;
 
       @media only screen and (max-width: 948px){
-        width:100%;
+        width: 100%;
       }
     }
 
@@ -62,6 +64,7 @@ body {
 
   .faq {
     @extend %list;
+    border-bottom: 8px solid $border;
 
     h3 {
       padding: 0;
@@ -70,6 +73,10 @@ body {
 
     li:first-child {
       padding-top: 5%;
+    }
+
+    li:last-child {
+      padding-bottom: 6rem;
     }
 
     li {
@@ -81,19 +88,31 @@ body {
 
     &--element {
       width: 65%;
-      padding: 25px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: $primary-color;
+      background-color: $border;
+      padding: 20px 30px;
+
+      svg {
+        font-size: 2.2rem;
+      }
+
+      .active--true {
+        animation: rotateElement ease-in-out 0.3s;
+      }
+
+      .active--false {
+        animation: rotateElement ease-in-out 0.3s reverse;
+      }
     }
 
     &--answear {
       border-top: 2px solid black;
-      background-color: $primary-color;
       width: 65%;
-      padding: 25px;
-      margin: 0;
+      margin: 0;      
+      background-color: $border;
+      padding: 20px 30px;
     }
   }
 }

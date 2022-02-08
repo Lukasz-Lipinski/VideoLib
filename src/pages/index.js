@@ -13,16 +13,20 @@ import { getContentForSite } from "../context/functions";
 
 export async function getStaticProps() {
   const homepage = getContentForSite("homepage");
+  const footer = getContentForSite("footer");
+  const { homepageFooter } = footer;
 
   return {
     props: {
       homepage,
+      homepageFooter,
     },
   };
 }
 
-export default function Home({ homepage }) {
+export default function Home({ homepage, homepageFooter }) {
   const { header, p1, p2, benefits, faq } = homepage;
+
   return (
     <>
       <Navigation isHomePage />
@@ -42,7 +46,8 @@ export default function Home({ homepage }) {
             <Container {...el} key={`faqList--question--${index}`} isFAQ />
           ))}
         </FAQ>
-        <Footer />
+
+        <Footer {...homepageFooter} isHomepage />
       </Layout>
     </>
   );

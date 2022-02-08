@@ -1,8 +1,14 @@
-function Footer() {
+import { NavLink } from "..";
+
+function Footer(props) {
+  const { isHomepage, links } = props;
+
+  console.log(links);
+
   return (
-    <div>
-      <h1>Footer</h1>
-    </div>
+    <footer className={`footer`}>
+      <ul></ul>
+    </footer>
   );
 }
 

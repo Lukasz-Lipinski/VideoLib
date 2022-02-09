@@ -1,0 +1,46 @@
+@use '_variables' as *;
+@use "mixins" as *;
+@use "animations" as *; 
+
+.signin {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+
+
+
+  .signinForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: hsla(0, 0%, 0%, 0.7);
+    border-radius: 15px;
+    padding: 40px 60px 100px;
+
+    h2 {
+      text-align: left;
+    }
+
+    input {
+      padding: 20px;
+      font-size: 1.2rem;
+      background-color: $border;
+      color: $grey;
+      border: 0;
+      border-radius: 10px;
+    }
+
+    button {
+      width: 100%;
+    }
+    
+
+    .errorMsg {
+      font-size: 1rem;
+      padding: 10px;
+      color: red;
+    }
+  }
+}
+

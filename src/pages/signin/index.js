@@ -13,7 +13,9 @@ function Signin() {
     <>
       <Navigation />
       <Layout>
-        <Form />
+        <div className="signin">
+          <Form />
+        </div>
         <Footer {...homepageFooter} />
       </Layout>
     </>

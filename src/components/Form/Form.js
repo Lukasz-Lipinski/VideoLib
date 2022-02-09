@@ -18,15 +18,21 @@ function FormContainer() {
 
         return errors;
       }}
+      onSubmit={(values, { setSubmitting }) => {
+        if (!values.email || !values.password) setSubmitting(false);
+        else setSubmitting(true);
+      }}
     >
-      {() => (
-        <Form className="form">
+      {(handleSubmitting) => (
+        <Form className="signinForm">
           <h2>Sign In</h2>
           <Field type="text" placeholder="Email or phone number" name="email" />
-          <ErrorMessage component="div" name="email" />
+          <ErrorMessage className="errorMsg" component="div" name="email" />
           <Field type="password" placeholder="Password" name="password" />
-          <ErrorMessage component="div" name="password" />
+          <ErrorMessage className="errorMsg" component="div" name="password" />
+
           <button type="submit">Sign in</button>
+
           <div className="form--options">
             <label htmlFor="rememberMe">Remember me</label>
             <Field id="rememberMe" type="checkbox" name="remeberMe" />
@@ -34,6 +40,7 @@ function FormContainer() {
               <a>Need help?</a>
             </Link>
           </div>
+
           <Link href="">
             <a>
               <GrFacebook />

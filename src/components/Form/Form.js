@@ -7,13 +7,13 @@ function FormContainer() {
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
-      validate={(values) => {
+      validate={(values, actions) => {
         const emailConition = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         const errors = {};
         if (!values.email) {
           errors.email = "the field is required";
           errors.isEmailError = true;
-        } else if (emailConition.test(values.email)) {
+        } else if (!emailConition.test(values.email)) {
           errors.email = "An email is incorrected";
           errors.isEmailError = true;
         } else errors.isEmailError = false;
@@ -25,31 +25,26 @@ function FormContainer() {
 
         return errors;
       }}
-      onSubmit={(values, actions) => {
-        if (values.email && values.password)
-          return actions.setSubmitting(false);
-        return actions.setSubmitting(true);
-      }}
     >
-      {(props) => (
+      {({ errors, handleSubmit, values, isSubmitting }) => (
         <Form className="signinForm">
           <h2>Sign In</h2>
           <Field
-            className={`error-${props.errors.isEmailError}`}
+            className={`error-${errors.isEmailError}`}
             type="text"
             placeholder="Email or phone number"
             name="email"
           />
           <ErrorMessage className="errorMsg" component="div" name="email" />
           <Field
-            className={`error-${props.errors.isPasswordError}`}
+            className={`error-${errors.isPasswordError}`}
             type="password"
             placeholder="Password"
             name="password"
           />
           <ErrorMessage className="errorMsg" component="div" name="password" />
 
-          <button type="submit" disabled={props.setSubmitting}>
+          <button type="submit" disabled={isSubmitting}>
             Sign in
           </button>
 
@@ -65,7 +60,9 @@ function FormContainer() {
 
           <Link href="">
             <a>
-              <GrFacebook />
+              <span>
+                <GrFacebook />
+              </span>
               Log with Facebook
             </a>
           </Link>

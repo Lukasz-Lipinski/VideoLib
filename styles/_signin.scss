@@ -82,8 +82,12 @@
       display: flex;
       justify-content: space-between;
       width: 100%;
-      margin-bottom: 50px;
+      margin-bottom: 50px;      
+    }
 
+    a span a {
+      background-color: $white;
+      color: #4267B2;
       
     }
 

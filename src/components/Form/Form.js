@@ -10,32 +10,54 @@ function FormContainer() {
       validate={(values) => {
         const emailConition = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         const errors = {};
-        if (!values.email) errors.email = "the field is required";
-        else if (emailConition.test(values.email))
+        if (!values.email) {
+          errors.email = "the field is required";
+          errors.isEmailError = true;
+        } else if (emailConition.test(values.email)) {
           errors.email = "An email is incorrected";
+          errors.isEmailError = true;
+        } else errors.isEmailError = false;
 
-        if (!values.password) errors.password = "the field is required";
+        if (!values.password) {
+          errors.password = "the field is required";
+          errors.isPasswordError = true;
+        } else errors.isPasswordError = false;
 
         return errors;
       }}
-      onSubmit={(values, { setSubmitting }) => {
-        if (!values.email || !values.password) setSubmitting(false);
-        else setSubmitting(true);
+      onSubmit={(values, actions) => {
+        if (values.email && values.password)
+          return actions.setSubmitting(false);
+        return actions.setSubmitting(true);
       }}
     >
-      {(handleSubmitting) => (
+      {(props) => (
         <Form className="signinForm">
           <h2>Sign In</h2>
-          <Field type="text" placeholder="Email or phone number" name="email" />
+          <Field
+            className={`error-${props.errors.isEmailError}`}
+            type="text"
+            placeholder="Email or phone number"
+            name="email"
+          />
           <ErrorMessage className="errorMsg" component="div" name="email" />
-          <Field type="password" placeholder="Password" name="password" />
+          <Field
+            className={`error-${props.errors.isPasswordError}`}
+            type="password"
+            placeholder="Password"
+            name="password"
+          />
           <ErrorMessage className="errorMsg" component="div" name="password" />
 
-          <button type="submit">Sign in</button>
+          <button type="submit" disabled={props.setSubmitting}>
+            Sign in
+          </button>
 
           <div className="form--options">
-            <label htmlFor="rememberMe">Remember me</label>
-            <Field id="rememberMe" type="checkbox" name="remeberMe" />
+            <span>
+              <label htmlFor="rememberMe">Remember me</label>
+              <Field id="rememberMe" type="checkbox" name="remeberMe" />
+            </span>
             <Link href="">
               <a>Need help?</a>
             </Link>

@@ -2,8 +2,19 @@ import React from "react";
 import { Form, Layout, Navigation, Footer } from "../../components";
 
 import MyContext from "../../context";
+import { getContentForSite } from "../../context/functions";
 
-function Signin() {
+export async function getStaticProps() {
+  const number = getContentForSite("number");
+
+  return {
+    props: {
+      number,
+    },
+  };
+}
+
+function Signin({ number }) {
   const context = React.useContext(MyContext);
 
   const { content } = context;
@@ -16,7 +27,7 @@ function Signin() {
         <div className="signin">
           <Form />
         </div>
-        <Footer {...homepageFooter} />
+        <Footer {...homepageFooter} number={number} />
       </Layout>
     </>
   );

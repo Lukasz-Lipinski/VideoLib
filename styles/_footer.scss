@@ -7,17 +7,29 @@
   background-color: black;
   font-size: 1.1rem;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  color: $primary-color;
+
+  p {
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
 
   @media only screen and (max-width: 768px) {
     flex-wrap: wrap;
   }
   
-  div{
+  div:not(.links){
     padding-right: 15%;
     @media only screen and (max-width: 768px) {
       padding: 8% 2%;
     }
+  }
+
+  div.links {
+    display: flex;
+    margin-top: 10px;
   }
 
   div:last-child {
@@ -36,8 +48,8 @@
   
   a {
     font-weight: bold;
-    color: $primary-color;
     text-decoration: none;
+    color: $primary-color;
   }
 
   a:hover {

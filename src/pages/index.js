@@ -13,6 +13,7 @@ import {
 } from "../components";
 
 export async function getStaticProps() {
+  const number = getContentForSite("number");
   const homepage = getContentForSite("homepage");
   const footer = getContentForSite("footer");
   const { homepageFooter } = footer;
@@ -21,11 +22,12 @@ export async function getStaticProps() {
     props: {
       homepage,
       homepageFooter,
+      number,
     },
   };
 }
 
-export default function Home({ homepage, homepageFooter }) {
+export default function Home({ homepage, homepageFooter, number }) {
   const { header, p1, p2, benefits, faq } = homepage;
 
   return (
@@ -48,7 +50,7 @@ export default function Home({ homepage, homepageFooter }) {
           ))}
         </FAQ>
 
-        <Footer {...homepageFooter} isHomepage />
+        <Footer {...homepageFooter} isHomepage number={number} />
       </Layout>
     </>
   );

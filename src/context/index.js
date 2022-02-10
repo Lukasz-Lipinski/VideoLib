@@ -13,6 +13,7 @@ export const data = {
     FAQ: "faq",
   },
   content: {
+    number: "0123-456-78910",
     footer: {
       homepageFooter: {
         links: [

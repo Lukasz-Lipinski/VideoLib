@@ -1,6 +1,8 @@
 import React from "react";
 import MyContext from "../../context/index";
 
+import { NavLink } from "../";
+
 function Signup() {
   const { classes } = React.useContext(MyContext);
 
@@ -16,7 +18,7 @@ function Signup() {
         <label htmlFor="email">Email address</label>
         <input type="email" id="email" />
       </span>
-      <button>Get Started &rsaquo;</button>
+      <NavLink href="/signup/regform" label="Get Started &rsaquo;" />
     </form>
   );
 }

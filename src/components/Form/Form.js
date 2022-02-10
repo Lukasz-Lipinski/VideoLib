@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import { GrFacebook } from "react-icons/gr";
 
-function FormContainer() {
+function FormContainer({ formType, signin }) {
   return (
     <Formik
       initialValues={{ email: "", password: null }}
@@ -29,7 +29,7 @@ function FormContainer() {
       {({ errors, isSubmitting, handleChange }) => {
         return (
           <Form className="signinForm">
-            <h2>Sign In</h2>
+            <h2>{formType}</h2>
             <Field
               className={`error-${errors.isEmailError}`}
               type="text"
@@ -51,33 +51,36 @@ function FormContainer() {
             />
 
             <button type="submit" disabled={isSubmitting}>
-              Sign in
+              {formType}
             </button>
+            {signin ? (
+              <>
+                <div className="form--options">
+                  <span>
+                    <Field id="rememberMe" type="checkbox" name="remeberMe" />
+                    <label htmlFor="rememberMe">Remember me</label>
+                  </span>
+                  <Link href="">
+                    <a>Need help?</a>
+                  </Link>
+                </div>
 
-            <div className="form--options">
-              <span>
-                <Field id="rememberMe" type="checkbox" name="remeberMe" />
-                <label htmlFor="rememberMe">Remember me</label>
-              </span>
-              <Link href="">
-                <a>Need help?</a>
-              </Link>
-            </div>
-
-            <Link href="">
-              <a>
-                <span>
-                  <GrFacebook />
-                </span>
-                Log with Facebook
-              </a>
-            </Link>
-            <p>
-              New to Netflix?
-              <Link href="/signup">
-                <a>Sign up now!</a>
-              </Link>
-            </p>
+                <Link href="">
+                  <a>
+                    <span>
+                      <GrFacebook />
+                    </span>
+                    Log with Facebook
+                  </a>
+                </Link>
+                <p>
+                  New to Netflix?
+                  <Link href="/signup/regform">
+                    <a>Sign up now!</a>
+                  </Link>
+                </p>
+              </>
+            ) : null}
           </Form>
         );
       }}

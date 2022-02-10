@@ -13,11 +13,12 @@
     padding: 0 20%;
   }
 
-  button {
+  a {
     @extend %button;
     border: none;
     border-radius: 0;
     font-size: 1.4rem;
+    text-decoration: none;
 
     @media only screen and (max-width: 992px) {
       margin-top: 20px;
@@ -25,11 +26,11 @@
     }
   }
 
-  button:hover {
+  a:hover {
     @extend %button-hover;
   }
 
-  button:active{
+  a:active{
     @extend %button-active;
   }
 

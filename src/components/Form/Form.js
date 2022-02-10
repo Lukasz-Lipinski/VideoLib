@@ -6,7 +6,7 @@ import { GrFacebook } from "react-icons/gr";
 function FormContainer() {
   return (
     <Formik
-      initialValues={{ email: "", password: "" }}
+      initialValues={{ email: "", password: null }}
       validate={(values) => {
         const emailConition = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         const errors = {};
@@ -18,7 +18,7 @@ function FormContainer() {
           errors.isEmailError = true;
         } else errors.isEmailError = false;
 
-        if (!values.password) {
+        if (values.password === "") {
           errors.password = "the field is required";
           errors.isPasswordError = true;
         } else errors.isPasswordError = false;
@@ -26,54 +26,61 @@ function FormContainer() {
         return errors;
       }}
     >
-      {({ errors, handleSubmit, values, isSubmitting }) => (
-        <Form className="signinForm">
-          <h2>Sign In</h2>
-          <Field
-            className={`error-${errors.isEmailError}`}
-            type="text"
-            placeholder="Email or phone number"
-            name="email"
-          />
-          <ErrorMessage className="errorMsg" component="div" name="email" />
-          <Field
-            className={`error-${errors.isPasswordError}`}
-            type="password"
-            placeholder="Password"
-            name="password"
-          />
-          <ErrorMessage className="errorMsg" component="div" name="password" />
+      {({ errors, isSubmitting, handleChange }) => {
+        return (
+          <Form className="signinForm">
+            <h2>Sign In</h2>
+            <Field
+              className={`error-${errors.isEmailError}`}
+              type="text"
+              placeholder="Email or phone number"
+              name="email"
+            />
+            <ErrorMessage className="errorMsg" component="div" name="email" />
+            <Field
+              onChange={handleChange}
+              className={`error-${errors.isPasswordError}`}
+              type="password"
+              placeholder="Password"
+              name="password"
+            />
+            <ErrorMessage
+              className="errorMsg"
+              component="div"
+              name="password"
+            />
 
-          <button type="submit" disabled={isSubmitting}>
-            Sign in
-          </button>
+            <button type="submit" disabled={isSubmitting}>
+              Sign in
+            </button>
 
-          <div className="form--options">
-            <span>
-              <label htmlFor="rememberMe">Remember me</label>
-              <Field id="rememberMe" type="checkbox" name="remeberMe" />
-            </span>
-            <Link href="">
-              <a>Need help?</a>
-            </Link>
-          </div>
-
-          <Link href="">
-            <a>
+            <div className="form--options">
               <span>
-                <GrFacebook />
+                <Field id="rememberMe" type="checkbox" name="remeberMe" />
+                <label htmlFor="rememberMe">Remember me</label>
               </span>
-              Log with Facebook
-            </a>
-          </Link>
-          <p>
-            New to Netflix?
-            <Link href="/signup">
-              <a>SIGN UP NOW!</a>
+              <Link href="">
+                <a>Need help?</a>
+              </Link>
+            </div>
+
+            <Link href="">
+              <a>
+                <span>
+                  <GrFacebook />
+                </span>
+                Log with Facebook
+              </a>
             </Link>
-          </p>
-        </Form>
-      )}
+            <p>
+              New to Netflix?
+              <Link href="/signup">
+                <a>Sign up now!</a>
+              </Link>
+            </p>
+          </Form>
+        );
+      }}
     </Formik>
   );
 }

@@ -1,0 +1,43 @@
+@use '_variables' as *;
+@use "mixins" as *;
+@use 'classes' as *;
+@use "animations" as *;
+
+.regForm {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  
+  nav {
+    border-bottom: 1px solid $grey ;
+    a:last-child {
+      color: black;
+      background-color: transparent;
+      font-weight: bolder;
+    }
+
+    a:last-child:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0 10%;
+
+    &--header {
+      text-align: left;
+      width: 40%;
+
+      h2 {
+        text-align: left;
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+
+}

@@ -1,8 +1,15 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import React from "react";
 
 import Options from "./Options";
 
 function FormContainer({ formType, signin }) {
+  const [email, setEmail] = React.useState();
+
+  React.useEffect(() => {
+    setEmail(localStorage.getItem("email"));
+  }, []);
+
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
@@ -26,7 +33,7 @@ function FormContainer({ formType, signin }) {
         return errors;
       }}
     >
-      {({ errors, isSubmitting }) => {
+      {({ errors }) => {
         return (
           <Form className="signinForm">
             <h2>{formType}</h2>
@@ -47,7 +54,7 @@ function FormContainer({ formType, signin }) {
             ) : (
               <span>
                 <p>Email</p>
-                <p>{}</p>
+                <p>{email ? email : null}</p>
               </span>
             )}
             <Field
@@ -62,9 +69,7 @@ function FormContainer({ formType, signin }) {
               name="password"
             />
 
-            <button type="submit" disabled={isSubmitting}>
-              {formType}
-            </button>
+            <button type="submit">{formType}</button>
             {signin ? <Options /> : null}
           </Form>
         );

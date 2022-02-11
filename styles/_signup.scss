@@ -5,12 +5,18 @@
 .signup {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   padding: 0 10%;
   margin-bottom: 10%;
 
   @media only screen and (max-width: 992px) {
     flex-wrap: wrap;
     padding: 0 20%;
+  }
+
+  p {
+    text-align: center;
+    color: orange;
   }
 
   a {
@@ -34,30 +40,37 @@
     @extend %button-active;
   }
 
-  &--emailAddress {
+  &--form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 
-    @media only screen and (max-width: 576px) {
-      width: 100%;
-    }
-    
-    label { 
-      position: absolute;
-      font-size: 1rem;
-      color: $grey;
-      padding: 6px 0 0 10px;
-      font-weight: bold;
-    }
 
-    input {
-      font-size: 1.5rem;
-      padding: 1.8rem 0.8rem 1.1rem;
-      border: none;
-      width: 500px;
+    &__emailAddress {
 
       @media only screen and (max-width: 576px) {
         width: 100%;
       }
+      
+      label { 
+        position: absolute;
+        font-size: 1rem;
+        color: $grey;
+        padding: 6px 0 0 10px;
+        font-weight: bold;
+      }
+  
+      input {
+        font-size: 1.5rem;
+        padding: 1.8rem 0.8rem 1.1rem;
+        border: none;
+        width: 500px;
+  
+        @media only screen and (max-width: 576px) {
+          width: 100%;
+        }
+      }
+  
     }
-
   }
 }

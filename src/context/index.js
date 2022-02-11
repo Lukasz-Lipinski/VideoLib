@@ -3,7 +3,7 @@ import React from "react";
 export const data = {
   links: [
     { href: "/", label: "Netflix" },
-    { href: "signin", label: "Sign in" },
+    { href: "/signin", label: "Sign in" },
   ],
   classes: {
     nav: "nav",

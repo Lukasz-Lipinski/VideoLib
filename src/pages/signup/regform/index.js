@@ -1,12 +1,25 @@
 import React from "react";
 import { Footer, Form, Layout, Navigation, NavLink } from "../../../components";
+import { getContentForSite } from "../../../context/functions";
 
-function RegForm() {
+export async function getStaticProps() {
+  const footer = getContentForSite("footer");
+  const { links } = footer.homepageFooter;
+
+  return {
+    props: {
+      links,
+    },
+  };
+}
+
+function RegForm({ links }) {
   const [pageNumber, setPageNumber] = React.useState(1);
 
   const nextPage = () => {
     setPageNumber((state) => state + 1);
   };
+
   return (
     <div className="registration">
       <Navigation />
@@ -21,6 +34,7 @@ function RegForm() {
           <button onClick={nextPage}>Next</button>
         </div>
       </Layout>
+      <Footer links={links} />
     </div>
   );
 }

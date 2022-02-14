@@ -1,3 +1,5 @@
+import { NavLink } from "../..";
+
 function OtherSiteFooter({ links, iterateList, number }) {
   const leftList = links.slice(0, 2);
   const middleList = links.slice(5, 7);
@@ -5,7 +7,13 @@ function OtherSiteFooter({ links, iterateList, number }) {
 
   return (
     <footer className={`footer`}>
-      <p>Questions? Call {number}</p>
+      {number ? (
+        <p>Questions? Call {number}</p>
+      ) : (
+        <div>
+          <NavLink label="Question? Contact us." href="/" />
+        </div>
+      )}
       <div className="links">
         <div className={`footer--leftList`}>
           <ul>{iterateList(leftList, "leftList")}</ul>

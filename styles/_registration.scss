@@ -8,6 +8,15 @@
   display: flex;
   flex-direction: column;
   color: black;
+
+  .footer {
+    background-color: $grey;
+
+    .links {
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+  }
   
   nav {
     border-bottom: 1px solid $grey;
@@ -27,11 +36,20 @@
   .container {
     display: flex;
     justify-content: center;
-    padding: 0;
+    padding: 0 0 100px 0;
 
     .registrationForm {
       display: flex;
       flex-direction: column;
+
+      span p:first-child {
+        margin-bottom: 0;
+      }
+
+      span p:last-child {
+        margin-top: 0;
+        font-weight: bold;
+      }
 
       input {
         @extend %input;
@@ -41,6 +59,10 @@
 
       .error-true {
         border-color: $secondary-color;
+      }
+
+      .error-false {
+        border-color: $acccept;
       }
 
       div.errorMsg {
@@ -66,6 +88,10 @@
         margin: 10px 0;
         color: $blue;
         text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
       }
 
       h2 {

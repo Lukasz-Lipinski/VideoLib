@@ -3,7 +3,7 @@ import React from "react";
 
 import Options from "./Options";
 
-function FormContainer({ formType, signin }) {
+function FormContainer({ formType, signin, isHeader, className }) {
   const [email, setEmail] = React.useState();
 
   React.useEffect(() => {
@@ -35,8 +35,8 @@ function FormContainer({ formType, signin }) {
     >
       {({ errors }) => {
         return (
-          <Form className="signinForm">
-            <h2>{formType}</h2>
+          <Form className={`${className}Form`}>
+            {isHeader ? <h2>{formType}</h2> : null}
             {signin ? (
               <>
                 <Field
@@ -69,7 +69,7 @@ function FormContainer({ formType, signin }) {
               name="password"
             />
 
-            <button type="submit">{formType}</button>
+            {isHeader ? <button type="submit">{formType}</button> : null}
             {signin ? <Options /> : null}
           </Form>
         );

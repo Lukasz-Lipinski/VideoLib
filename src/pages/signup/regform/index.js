@@ -1,5 +1,5 @@
 import React from "react";
-import { Footer, Form, Layout, Navigation } from "../../../components";
+import { Footer, Form, Layout, Navigation, NavLink } from "../../../components";
 
 function RegForm() {
   const [pageNumber, setPageNumber] = React.useState(1);
@@ -8,17 +8,18 @@ function RegForm() {
     setPageNumber((state) => state + 1);
   };
   return (
-    <div className="regForm">
+    <div className="registration">
       <Navigation />
 
       <Layout>
-        <div className="container--header">
+        <div>
           <p>SETP {pageNumber} of 3</p>
           <h2>Welcome back!</h2>
           <h2>Joining Netflix is easy.</h2>
+          <Form formType="Sign up" className="registration" />
+          <NavLink label="Forgot your password?" href="/" />
+          <button onClick={nextPage}>Next</button>
         </div>
-        <Form formType="Sign up" />
-        <button onClick={nextPage}>Next</button>
       </Layout>
     </div>
   );

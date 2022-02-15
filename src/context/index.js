@@ -13,6 +13,11 @@ export const data = {
     FAQ: "faq",
   },
   content: {
+    step2: [
+      "No commitments, cancel at any time.",
+      "Everything on Netflix for one low price.",
+      "Unlimited viewing on all your devices.",
+    ],
     number: "0123-456-78910",
     footer: {
       homepageFooter: {

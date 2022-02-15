@@ -1,5 +1,5 @@
 import React from "react";
-import { Footer, Form, Layout, Navigation, NavLink } from "../../../components";
+import { Footer, Layout, Navigation, Step1, Step2 } from "../../../components";
 import { getContentForSite } from "../../../context/functions";
 
 export async function getStaticProps() {
@@ -20,6 +20,19 @@ function RegForm({ links }) {
     setPageNumber((state) => state + 1);
   };
 
+  const nextStep = () => {
+    switch (pageNumber) {
+      case 1:
+        return <Step1 />;
+      case 2:
+        return <Step2 />;
+      case 3:
+        return;
+      default:
+        return <Step1 />;
+    }
+  };
+
   return (
     <div className="registration">
       <Navigation />
@@ -27,10 +40,7 @@ function RegForm({ links }) {
       <Layout>
         <div>
           <p>SETP {pageNumber} of 3</p>
-          <h2>Welcome back!</h2>
-          <h2>Joining Netflix is easy.</h2>
-          <Form formType="Sign up" className="registration" />
-          <NavLink label="Forgot your password?" href="/" />
+          {nextStep()}
           <button onClick={nextPage}>Next</button>
         </div>
       </Layout>

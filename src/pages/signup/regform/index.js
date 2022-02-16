@@ -23,7 +23,7 @@ function RegForm({ links }) {
   const nextStep = () => {
     switch (pageNumber) {
       case 1:
-        return <Step1 />;
+        return <Step1 handleClick={nextPage} />;
       case 2:
         return <Step2 />;
       case 3:
@@ -41,7 +41,6 @@ function RegForm({ links }) {
         <div>
           <p>SETP {pageNumber} of 3</p>
           {nextStep()}
-          <button onClick={nextPage}>Next</button>
         </div>
       </Layout>
       <Footer links={links} />

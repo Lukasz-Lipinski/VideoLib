@@ -1,9 +1,10 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Field, ErrorMessage, Form } from "formik";
 import React from "react";
+import { NavLink } from "..";
 
 import Options from "./Options";
 
-function FormContainer({ formType, signin, isHeader, className }) {
+function FormContainer({ formType, signin, isHeader, className, handleClick }) {
   const [email, setEmail] = React.useState();
 
   React.useEffect(() => {
@@ -12,11 +13,15 @@ function FormContainer({ formType, signin, isHeader, className }) {
 
   return (
     <Formik
-      initialValues={{ email: "", password: "" }}
+      onSubmit={(data) => {
+        console.log(data);
+      }}
+      initialValues={{ email: isHeader ? "" : email, password: "" }}
       validate={(values) => {
         const emailConition = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         const errors = {};
-        if (!values.email) {
+
+        if (!values.email && isHeader) {
           errors.email = "the field is required";
           errors.isEmailError = true;
         } else if (!emailConition.test(values.email)) {
@@ -69,7 +74,14 @@ function FormContainer({ formType, signin, isHeader, className }) {
               name="password"
             />
 
-            {isHeader ? <button type="submit">{formType}</button> : null}
+            {isHeader ? (
+              <button type="submit">{formType}</button>
+            ) : (
+              <>
+                <NavLink href="/" label="Forgot your password?" />
+                <button type="submit">Next</button>
+              </>
+            )}
             {signin ? <Options /> : null}
           </Form>
         );

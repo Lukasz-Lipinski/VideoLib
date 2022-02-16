@@ -1,4 +1,5 @@
 import React from "react";
+import { fetchUser } from "../airtable";
 
 import { getContentForSite } from "../context/functions";
 
@@ -29,6 +30,10 @@ export async function getStaticProps() {
 
 export default function Home({ homepage, homepageFooter, number }) {
   const { header, p1, p2, benefits, faq } = homepage;
+
+  React.useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <>

@@ -6,7 +6,7 @@ import { getContentForSite } from "../context/functions";
 import {
   Layout,
   Navigation,
-  Signup,
+  Form,
   Benefits,
   Container,
   Footer,
@@ -42,7 +42,7 @@ export default function Home({ homepage, homepageFooter, number }) {
         <h1>{header}</h1>
         <h3>{p1}</h3>
         <h5>{p2}</h5>
-        <Signup />
+        <Form typeofForm="MainSiteForm" />
 
         <Benefits>
           {benefits.map((el, index) => (

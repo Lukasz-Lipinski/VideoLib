@@ -1,9 +1,9 @@
 import React from "react";
-import MyContext from "../../context/index";
+import MyContext from "../../../context/index";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
-function Signup() {
+function MainSiteForm() {
   const { classes } = React.useContext(MyContext);
 
   const { signup } = classes;
@@ -50,4 +50,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default MainSiteForm;

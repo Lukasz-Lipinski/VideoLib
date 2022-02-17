@@ -25,7 +25,7 @@ function Signin({ number }) {
       <Navigation />
       <Layout>
         <div className="signin">
-          <Form className="signin" formType="Sign in" signin isHeader />
+          <Form typeofForm="SignupForm" />
         </div>
         <Footer {...homepageFooter} number={number} />
       </Layout>

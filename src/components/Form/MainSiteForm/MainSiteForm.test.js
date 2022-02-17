@@ -1,4 +1,4 @@
-import Signup from "./Signup";
+import Signup from "./MainSiteForm";
 import { render } from "@testing-library/react";
 
 it("should have label with email address", () => {});

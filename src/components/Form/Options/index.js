@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { Field } from "formik";
 import { GrFacebook } from "react-icons/gr";
 
 function Options() {
@@ -8,7 +7,7 @@ function Options() {
     <>
       <div className="form--options">
         <span>
-          <Field id="rememberMe" type="checkbox" name="remeberMe" />
+          <input id="rememberMe" type="checkbox" name="remeberMe" />
           <label htmlFor="rememberMe">Remember me</label>
         </span>
         <Link href="">

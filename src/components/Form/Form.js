@@ -1,16 +1,16 @@
 import React from "react";
 import MainSiteForm from "./MainSiteForm/MainSiteForm";
-import SigninForm from "./SigninForm";
-import SignupFrom from "./SignupForm";
+import SignupForm from "./SignupForm";
+import SigninFrom from "./SigninForm";
 
 function FormContainer({ typeofForm }) {
   switch (typeofForm) {
-    case "SignupForm":
-      return (
-        <SignupFrom className="signin" formType="Sign in" signup isHeader />
-      );
     case "SigninForm":
-      return <SigninForm className="registration" formType="Sign up" />;
+      return (
+        <SigninFrom className="signin" formType="Sign in" isSignin isHeader />
+      );
+    case "SignupForm":
+      return <SignupForm className="registration" />;
     case "MainSiteForm":
       return <MainSiteForm />;
     default:

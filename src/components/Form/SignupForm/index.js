@@ -4,7 +4,7 @@ import { NavLink } from "../../";
 
 import Options from "../Options";
 
-function SignupFrom({ formType, signin, isHeader, className }) {
+function SignupFrom({ formType, signup, isHeader, className }) {
   const [email, setEmail] = React.useState();
 
   React.useEffect(() => {
@@ -39,7 +39,7 @@ function SignupFrom({ formType, signin, isHeader, className }) {
         return (
           <Form className={`${className}Form`}>
             {isHeader ? <h2>{formType}</h2> : null}
-            {signin ? (
+            {signup ? (
               <>
                 <Field
                   className={`error-${errors.errorIsEmail}`}
@@ -79,7 +79,7 @@ function SignupFrom({ formType, signin, isHeader, className }) {
                 <button type="submit">Next</button>
               </>
             )}
-            {signin ? <Options /> : null}
+            {signup ? <Options /> : null}
           </Form>
         );
       }}

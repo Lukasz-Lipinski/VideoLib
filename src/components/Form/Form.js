@@ -7,10 +7,10 @@ function FormContainer({ typeofForm }) {
   switch (typeofForm) {
     case "SignupForm":
       return (
-        <SignupFrom className="signin" formType="Sign in" signin isHeader />
+        <SignupFrom className="signin" formType="Sign in" signup isHeader />
       );
     case "SigninForm":
-      return <SigninForm />;
+      return <SigninForm className="registration" formType="Sign up" />;
     case "MainSiteForm":
       return <MainSiteForm />;
     default:

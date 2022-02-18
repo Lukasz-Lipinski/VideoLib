@@ -5,11 +5,7 @@ function Step1({ handleClick }) {
     <>
       <h2>Welcome back!</h2>
       <h2>Joining Netflix is easy.</h2>
-      <Form
-        formType="Sign up"
-        className="registration"
-        handleClick={handleClick}
-      />
+      <Form typeofForm="SigninForm" />
     </>
   );
 }

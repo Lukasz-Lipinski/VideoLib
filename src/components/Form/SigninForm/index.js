@@ -1,14 +1,13 @@
 import React from "react";
 import { useFormik } from "formik";
-
 import { NavLink } from "../..";
 import ErrorMsg from "../ErrorMsg";
 import Options from "../Options";
 import { initialValues, validate } from "../validationFunctions";
 
 function SigninFrom({ formType, isSignin, isHeader, className }) {
-  const onSubmit = (values) => {
-    console.log(values);
+  const onSubmit = () => {
+    console.log("submit", errors, values);
   };
 
   const formik = useFormik({

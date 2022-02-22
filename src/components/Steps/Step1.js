@@ -1,6 +1,6 @@
 import { Form } from "..";
 
-function Step1({ handleClick }) {
+function Step1() {
   return (
     <>
       <h2>Welcome back!</h2>

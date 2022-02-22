@@ -9,6 +9,7 @@
     "test": "jest --watch"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.7.2",
     "airtable": "^0.11.1",
     "axios": "^0.26.0",
     "formik": "^2.2.9",
@@ -16,6 +17,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.3.1",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
     "sass": "^1.49.4"
   },
   "devDependencies": {

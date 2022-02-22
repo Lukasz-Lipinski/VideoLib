@@ -15,7 +15,7 @@ function MainSiteForm() {
     window.location.href = "/signup/regform";
   };
 
-  const onSubmit = (values) => {
+  const onSubmit = () => {
     goToSignupSite(values.email);
   };
   const formik = useFormik({
@@ -24,23 +24,25 @@ function MainSiteForm() {
     onSubmit,
   });
 
+  const { values, errors, handleSubmit, handleChange } = formik;
+
   return (
     <div className={signup}>
-      <form className={`${signup}--form`} onSubmit={formik.handleSubmit}>
+      <form className={`${signup}--form`} onSubmit={handleSubmit}>
         <span className={`${signup}--form__emailAddress  `}>
           <label htmlFor="email">Email address</label>
           <input
             type="email"
             id="email"
-            onChange={formik.handleChange}
-            value={formik.values.email}
+            onChange={handleChange}
+            value={values.email}
           />
         </span>
         <button role="link" type="submit">
           Get Started &rsaquo;
         </button>
       </form>
-      <ErrorMsg component="p" msg={formik.errors.email} />
+      <ErrorMsg component="p" msg={errors.email} />
     </div>
   );
 }

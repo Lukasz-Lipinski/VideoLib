@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 import { Footer, Layout, Navigation, Step1, Step2 } from "../../../components";
 import { getContentForSite } from "../../../context/functions";
 
@@ -14,16 +16,12 @@ export async function getStaticProps() {
 }
 
 function RegForm({ links }) {
-  const [pageNumber, setPageNumber] = React.useState(1);
-
-  const nextPage = () => {
-    setPageNumber((state) => state + 1);
-  };
+  const step = useSelector((state) => state.form.step);
 
   const nextStep = () => {
-    switch (pageNumber) {
+    switch (step) {
       case 1:
-        return <Step1 handleClick={nextPage} />;
+        return <Step1 />;
       case 2:
         return <Step2 />;
       case 3:
@@ -39,7 +37,7 @@ function RegForm({ links }) {
 
       <Layout>
         <div>
-          <p>SETP {pageNumber} of 3</p>
+          <p>SETP {step} OF 3</p>
           {nextStep()}
         </div>
       </Layout>

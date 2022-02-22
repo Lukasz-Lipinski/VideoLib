@@ -1,19 +1,23 @@
-import { useFormik } from "formik";
 import React from "react";
+import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
+
 import { NavLink } from "../..";
 import ErrorMsg from "../ErrorMsg";
 import { validate, initialValues } from "../validationFunctions";
+import { increamentStep } from "../redux";
 
 function SignupForm({ className }) {
-  const [email, setEmail] = React.useState();
+  const [email, setEmail] = React.useState("");
+  const dispatch = useDispatch();
+
+  const onSubmit = () => {
+    console.log("dispatch");
+  };
 
   React.useEffect(() => {
     setEmail(localStorage.getItem("email"));
   }, []);
-
-  const onSubmit = (values) => {
-    console.log(values);
-  };
 
   const formik = useFormik({
     initialValues,

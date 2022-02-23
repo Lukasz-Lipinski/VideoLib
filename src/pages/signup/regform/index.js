@@ -9,6 +9,8 @@ import {
   Step2,
   Step3,
 } from "../../../components";
+import MyContext from "../../../context";
+
 import { getContentForSite } from "../../../context/functions";
 
 export async function getStaticProps() {
@@ -24,13 +26,15 @@ export async function getStaticProps() {
 
 function RegForm({ links }) {
   const step = useSelector((state) => state.form.step);
+  const { classes } = React.useContext(MyContext);
+  const { registration } = classes;
 
   const nextStep = () => {
     switch (step) {
       case 1:
         return <Step1 />;
       case 2:
-        return <Step2 />;
+        return <Step2 className={registration} />;
       case 3:
         return <Step3 />;
       default:
@@ -39,7 +43,7 @@ function RegForm({ links }) {
   };
 
   return (
-    <div className="registration">
+    <div className={registration}>
       <Navigation />
 
       <Layout>

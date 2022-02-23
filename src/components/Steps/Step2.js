@@ -1,11 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import MyContext from "../../context";
+import { increamentStep } from "../Form/redux";
 
 function Step2() {
-  const context = React.useContext(MyContext);
-
-  const { content } = context;
+  const { content } = React.useContext(MyContext);
   const { step2 } = content;
+
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(increamentStep());
+  };
 
   return (
     <>
@@ -15,6 +21,10 @@ function Step2() {
           <li key={`step2-list__${index}`}>{content}</li>
         ))}
       </ul>
+
+      <button type="button" onClick={handleClick}>
+        Next
+      </button>
     </>
   );
 }

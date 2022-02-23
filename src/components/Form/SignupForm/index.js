@@ -11,8 +11,8 @@ function SignupForm({ className }) {
   const [email, setEmail] = React.useState("");
   const dispatch = useDispatch();
 
-  const onSubmit = () => {
-    dispatch(increamentStep());
+  const onSubmit = (values) => {
+    if (values.password) dispatch(increamentStep());
   };
 
   React.useEffect(() => {

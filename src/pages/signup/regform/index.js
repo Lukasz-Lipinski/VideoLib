@@ -1,7 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { Footer, Layout, Navigation, Step1, Step2 } from "../../../components";
+import {
+  Footer,
+  Layout,
+  Navigation,
+  Step1,
+  Step2,
+  Step3,
+} from "../../../components";
 import { getContentForSite } from "../../../context/functions";
 
 export async function getStaticProps() {
@@ -25,7 +32,7 @@ function RegForm({ links }) {
       case 2:
         return <Step2 />;
       case 3:
-        return;
+        return <Step3 />;
       default:
         return <Step1 />;
     }

@@ -9,3 +9,4 @@ export { default as Container } from "./Container";
 export { default as FAQ } from "./FAQ/FAQ.js";
 export { default as Step1 } from "./Steps/Step1";
 export { default as Step2 } from "./Steps/Step2";
+export { default as Step3 } from "./Steps/Step3";

@@ -1,8 +1,9 @@
 export const validate = (values) => {
   const errors = {};
 
-  emailValidation(values, errors);
-  passwordValidation(values, errors);
+  if (typeof values.email !== "undefined") emailValidation(values, errors);
+  if (typeof values.password !== "undefined")
+    passwordValidation(values, errors);
 
   return errors;
 };
@@ -21,8 +22,8 @@ export const passwordValidation = (values, errors) => {
   if (values.password) {
     if (values.password.length < 4 || values.password.length > 60) {
       errors.password = "Password must contain between 4 and 60 charackters";
-    } else if (!values.password) errors.password = "A password is required";
-  }
+    }
+  } else errors.password = "A password is required";
 };
 
 export const initialValues = (email) => ({

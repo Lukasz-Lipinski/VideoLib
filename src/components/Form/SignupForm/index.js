@@ -12,7 +12,7 @@ function SignupForm({ className }) {
   const dispatch = useDispatch();
 
   const onSubmit = () => {
-    console.log("dispatch");
+    dispatch(increamentStep());
   };
 
   React.useEffect(() => {
@@ -28,9 +28,9 @@ function SignupForm({ className }) {
   const { handleSubmit, handleChange, values, errors } = formik;
 
   const isError = () => {
-    if (errors.isErrorPassword && values.password) return true;
-    if (errors.isErrorPassword && !values.password) return true;
-    if (!errors.isErrorPassword && !values.password) return null;
+    if (errors.password && values.password) return true;
+    if (errors.password && !values.password) return true;
+    if (!errors.password && !values.password) return null;
     else return false;
   };
 

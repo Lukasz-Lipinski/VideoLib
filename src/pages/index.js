@@ -1,5 +1,6 @@
 import React from "react";
 import { fetchUser } from "../airtable";
+import { setUsers } from "../components/Form/redux";
 
 import { getContentForSite } from "../context/functions";
 
@@ -12,6 +13,7 @@ import {
   Footer,
   FAQ,
 } from "../components";
+import { useDispatch } from "react-redux";
 
 export async function getStaticProps() {
   const number = getContentForSite("number");
@@ -31,9 +33,17 @@ export async function getStaticProps() {
 export default function Home({ homepage, homepageFooter, number }) {
   const { header, p1, p2, benefits, faq } = homepage;
 
+  const dispatch = useDispatch();
+
+  const fetchData = React.useCallback(async () => {
+    const result = await fetchUser();
+
+    dispatch(setUsers(result));
+  }, [dispatch]);
+
   React.useEffect(() => {
-    fetchUser();
-  }, []);
+    fetchData();
+  }, [fetchData]);
 
   return (
     <>

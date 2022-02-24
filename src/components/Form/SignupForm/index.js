@@ -6,13 +6,18 @@ import { NavLink } from "../..";
 import ErrorMsg from "../ErrorMsg";
 import { validate, initialValues } from "../validationFunctions";
 import { increamentStep } from "../redux";
+import { sendUserData } from "../../../airtable/";
 
 function SignupForm({ className }) {
   const [email, setEmail] = React.useState("");
   const dispatch = useDispatch();
 
   const onSubmit = (values) => {
-    if (values.password) dispatch(increamentStep());
+    const { password } = values;
+    if (password) {
+      sendUserData({ password, email });
+      dispatch(increamentStep());
+    }
   };
 
   React.useEffect(() => {

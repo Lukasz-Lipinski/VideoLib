@@ -7,18 +7,17 @@ var base = new Airtable({ apiKey: process.env.NEXT_PUBLIC_API_KEY }).base(
 
 export const fetchUser = async () => {
   const baseURL = `https://api.airtable.com/v0/${process.env.NEXT_PUBLIC_ENDPOINT_FOR_USERS}/users?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
-  const data = await (await axios.get(baseURL)).data.records;
-  return data;
+  const { data } = await axios.get(baseURL);
+  const { records } = await data;
+  return records;
 };
 
-export const sendUserData = ({ name, email, password, phoneNumber }) => {
-  base("user").create([
+export const sendUserData = ({ email, password }) => {
+  base("users").create([
     {
       fields: {
-        name,
-        email,
+        email: email.toLowerCase(),
         password,
-        phoneNumber,
       },
     },
   ]);

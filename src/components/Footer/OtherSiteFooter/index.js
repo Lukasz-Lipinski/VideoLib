@@ -11,7 +11,7 @@ function OtherSiteFooter({ links, iterateList, number }) {
         <p>Questions? Call {number}</p>
       ) : (
         <div>
-          <NavLink label="Question? Contact us." href="/" />
+          <NavLink label="Question? Contact us." href="/info/question" />
         </div>
       )}
       <div className="links">

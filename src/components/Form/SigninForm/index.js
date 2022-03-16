@@ -1,13 +1,31 @@
 import React from "react";
 import { useFormik } from "formik";
+
 import { NavLink } from "../..";
 import ErrorMsg from "../ErrorMsg";
 import Options from "../Options";
 import { initialValues, validate } from "../validationFunctions";
+import { useSelector } from "react-redux";
 
 function SigninFrom({ formType, isSignin, isHeader, className }) {
-  const onSubmit = () => {
-    console.log("submit", errors, values);
+  const users = useSelector((state) => state.form.users);
+
+  const goToDashboard = React.useCallback((href) => {
+    window.location.href = href;
+  }, []);
+
+  const onSubmit = (values) => {
+    const { email, password } = values;
+
+    const isEmailAndPassCorrected = users.includes(
+      (user) => user.email === email && user.password === password
+    );
+
+    console.log(isEmailAndPassCorrected, users);
+
+    if (isEmailAndPassCorrected) {
+      goToDashboard("dashboard/profiles");
+    }
   };
 
   const formik = useFormik({

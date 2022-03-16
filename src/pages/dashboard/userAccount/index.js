@@ -6,3 +6,5 @@ function userAccount() {
     </div>
   );
 }
+
+export default userAccount;

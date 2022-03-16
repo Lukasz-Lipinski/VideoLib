@@ -9,3 +9,5 @@ function CreateProfilePanel() {
     </>
   );
 }
+
+export default CreateProfilePanel;

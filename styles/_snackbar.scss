@@ -1,0 +1,39 @@
+@use '_variables' as *;
+@use "mixins" as *;
+@use "animations" as *;
+
+
+.snackbar {
+  position:fixed;
+  bottom: 0;
+  display: flex;
+  font-size: 1.8rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 10px 30px;
+
+  h2:first-child {
+    padding: 0;
+    margin: 0;
+ }
+
+ p {
+   padding-right: 15%;
+ }
+}
+
+.success {
+  background-color: $success;
+}
+
+.error{
+  background-color: $secondary-color;
+
+}
+
+.pending {
+  background-color: $pending;
+
+}

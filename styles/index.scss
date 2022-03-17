@@ -1,12 +1,13 @@
 @use '_variables' as *;
-@use "mixins" as *;
-@use "animations" as *;
+@use "_mixins" as *;
+@use "_animations" as *;
 
 @use "_nav";
 @use "signup";
 @use "footer";
 @use "signin";
 @use "registration";
+@use "snackbar";
 
 body {
   margin: 0;
@@ -14,6 +15,10 @@ body {
   font-size: 1.3rem;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../public/backgroundImg.jpg');
   color: $white;
+  
+   * {
+     box-sizing: border-box;
+   }
 }
 
 .container {

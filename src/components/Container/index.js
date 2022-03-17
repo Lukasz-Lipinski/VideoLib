@@ -12,37 +12,33 @@ function Container(props) {
   const { classes } = React.useContext(MyContext);
   const { benefits, FAQ } = classes;
 
-  const EvenComponent = () => {
-    return (
-      <div className="evenComponent">
-        {last ? (
-          <Image src={src} alt={header} width={300} height={300} />
-        ) : (
-          <Image src={src} alt={header} width={500} height={300} />
-        )}
-        <div className={`${benefits}--text`}>
-          <h3>{header}</h3>
-          <p>{details}</p>
-        </div>
+  const EvenComponent = () => (
+    <div className="evenComponent">
+      {last ? (
+        <Image src={src} alt={header} width={300} height={300} />
+      ) : (
+        <Image src={src} alt={header} width={500} height={300} />
+      )}
+      <div className={`${benefits}--text`}>
+        <h3>{header}</h3>
+        <p>{details}</p>
       </div>
-    );
-  };
+    </div>
+  );
 
-  const OddComponent = () => {
-    return (
-      <>
-        <div className={`${benefits}--text`}>
-          <h3>{header}</h3>
-          <p>{details}</p>
-        </div>
-        {last ? (
-          <Image src={src} alt={header} width={300} height={300} />
-        ) : (
-          <Image src={src} alt={header} width={500} height={300} />
-        )}
-      </>
-    );
-  };
+  const OddComponent = () => (
+    <>
+      <div className={`${benefits}--text`}>
+        <h3>{header}</h3>
+        <p>{details}</p>
+      </div>
+      {last ? (
+        <Image src={src} alt={header} width={300} height={300} />
+      ) : (
+        <Image src={src} alt={header} width={500} height={300} />
+      )}
+    </>
+  );
 
   const FAQList = () => (
     <>

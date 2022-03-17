@@ -1,8 +1,5 @@
-import React from "react";
-import { fetchUser } from "../airtable";
-import { setUsers } from "../components/Form/redux";
-
-import { getContentForSite } from "../context/functions";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 import {
   Layout,
@@ -12,13 +9,16 @@ import {
   Container,
   Footer,
   FAQ,
+  Snackbar,
 } from "../components";
-import { useDispatch } from "react-redux";
+
+import { getContentForSite } from "../context/functions";
 
 export async function getStaticProps() {
   const number = getContentForSite("number");
   const homepage = getContentForSite("homepage");
   const footer = getContentForSite("footer");
+
   const { homepageFooter } = footer;
 
   return {
@@ -32,18 +32,6 @@ export async function getStaticProps() {
 
 export default function Home({ homepage, homepageFooter, number }) {
   const { header, p1, p2, benefits, faq } = homepage;
-
-  const dispatch = useDispatch();
-
-  const fetchData = React.useCallback(async () => {
-    const result = await fetchUser();
-
-    dispatch(setUsers(result));
-  }, [dispatch]);
-
-  React.useEffect(() => {
-    fetchData();
-  }, [fetchData]);
 
   return (
     <>

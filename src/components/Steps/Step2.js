@@ -1,10 +1,10 @@
-import React from "react";
+import { useContext } from "react";
 import { useDispatch } from "react-redux";
 import MyContext from "../../context";
 import { increamentStep } from "../Form/redux";
 
 function Step2() {
-  const { content } = React.useContext(MyContext);
+  const { content } = useContext(MyContext);
   const { step2 } = content;
 
   const dispatch = useDispatch();

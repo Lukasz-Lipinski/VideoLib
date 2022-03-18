@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 
 import { useRouter } from "next/router";
-import { NavLink } from "..";
+import { NavLink } from "../..";
 
-import MyContext from "../../context";
+import MyContext from "../../../context";
 
 function Navigation({ isHomePage }) {
   const { links, classes } = useContext(MyContext);

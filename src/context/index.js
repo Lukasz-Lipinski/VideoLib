@@ -23,7 +23,7 @@ export const data = {
     footer: {
       homepageFooter: {
         links: [
-          { label: "FAQ", href: "/faq" },
+          { label: "FAQ", href: "faq" },
           { label: "Investor Relations", href: "investor-relations" },
           { label: "Ways to Watch", href: "ways-to-watch" },
           { label: "Corporate Information", href: "corporate-information" },

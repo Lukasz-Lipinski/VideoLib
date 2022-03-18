@@ -1,0 +1,54 @@
+@use '_variables' as *;
+@use "mixins" as *;
+@use "animations" as *;
+@use 'nav';
+
+.nav {
+  &--leftPart {
+    display: inherit;
+
+    a:first-child::after {
+      margin-inline: 10px;
+      content: "|";
+      color: $white;
+    }
+
+    a:last-child:hover {
+      @extend %button-hover;
+    }
+
+    a:last-child::active {
+      @extend %button-active;
+    }
+  }
+
+  &--rightPart {
+    display: inherit;
+
+    button {
+      margin-right: 10px;
+      @extend %button;
+      font-size: 1.2rem;
+      border: none;
+    }
+
+    button:hover {
+      @extend %button-hover;
+    }
+
+    button:active {
+      @extend %button-active;
+    }
+
+    button:first-child {
+      background-color: transparent;
+      outline: 2px solid $white;
+    }
+
+    button:first-child:hover {
+      background-color: $white;
+      color: $black;
+      outline: 2px solid $white;
+    }
+  }
+}

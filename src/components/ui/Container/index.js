@@ -2,8 +2,8 @@ import React from "react";
 import Image from "next/image";
 
 import { TiPlusOutline } from "react-icons/ti";
-import MyContext from "../../context";
-import { findNumber } from "../../context/functions";
+import MyContext from "../../../context";
+import { findNumber } from "../../../context/functions";
 
 function Container(props) {
   const { header, details, question, src, answear, last, isFAQ } = props;

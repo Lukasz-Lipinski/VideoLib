@@ -1,5 +1,5 @@
-import { NavLink } from "..";
 import React from "react";
+
 import HomepageFooter from "./HomepageFooter";
 import OtherSiteFooter from "./OtherSiteFooter";
 

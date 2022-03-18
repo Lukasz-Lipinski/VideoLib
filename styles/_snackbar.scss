@@ -2,9 +2,8 @@
 @use "mixins" as *;
 @use "animations" as *;
 
-
 .snackbar {
-  position:fixed;
+  position: absolute;
   bottom: 0;
   display: flex;
   font-size: 1.8rem;

@@ -13,6 +13,15 @@ export const insertData = async (client, collection, data) => {
   await db.collection(collection).insertOne(data);
 };
 
+export const downloadUser = async (client, collection) => {
+  const db = client.db();
+
+  const document = await db.collection(collection).find().toArray();
+
+  console.log(document);
+  return document;
+};
+
 export default async function registerHandler(req, res) {
   if (req.method === "POST") {
     const { email, password } = req.body;
@@ -55,7 +64,24 @@ export default async function registerHandler(req, res) {
         message: "An account was created successfully",
       },
     });
-  } else {
-    res.status(200).json({ user: "feedback" });
   }
+
+  let client;
+  try {
+    client = await connectDatebase();
+  } catch (error) {
+    res.status(501).json({ feedback: "Something went wrong" });
+    return;
+  }
+
+  let users;
+  try {
+    users = await downloadUser(client, "users");
+  } catch (error) {
+    res.status(501).json({ feedback: "Invalid data" });
+    return;
+  }
+  res.status(200).json({ users });
+
+  client.close();
 }

@@ -1,30 +1,31 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { useFormik } from "formik";
+import useSWR from "swr";
 
 import { NavLink } from "../..";
 import ErrorMsg from "../ErrorMsg";
 import Options from "../Options";
 import { initialValues, validate } from "../validationFunctions";
-import { useSelector } from "react-redux";
+
+const fetcher = async (url) => await fetch(url).then((res) => res.json());
 
 function SigninFrom({ formType, isSignin, isHeader, className }) {
-  const users = useSelector((state) => state.form.users);
+  const router = useRouter();
 
-  const goToDashboard = React.useCallback((href) => {
-    window.location.href = href;
-  }, []);
+  const { data, error } = useSWR("/api/register", fetcher);
 
   const onSubmit = (values) => {
     const { email, password } = values;
+    const { users } = data;
 
-    const isEmailAndPassCorrected = users.includes(
-      (user) => user.email === email && user.password === password
+    const isEmailAndPassCorrected = users.filter(
+      (userData) => userData.email === email && userData.password === password
     );
 
-    console.log(isEmailAndPassCorrected, users);
-
     if (isEmailAndPassCorrected) {
-      goToDashboard("dashboard/profiles");
+      router.push("dashboard/profiles");
+      return;
     }
   };
 
@@ -44,7 +45,7 @@ function SigninFrom({ formType, isSignin, isHeader, className }) {
       {isHeader ? <h2>{formType}</h2> : null}
 
       <input
-        className={setIsError(errors.email)}
+        className={setIsError.bind(this, errors.email)}
         type="email"
         placeholder="Email or phone number"
         name="email"
@@ -54,7 +55,7 @@ function SigninFrom({ formType, isSignin, isHeader, className }) {
       <ErrorMsg component="div" msg={errors.email} />
 
       <input
-        className={setIsError(errors.password)}
+        className={setIsError.bind(this, errors.password)}
         type="password"
         placeholder="Password"
         name="password"

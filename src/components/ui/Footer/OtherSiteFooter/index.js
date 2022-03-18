@@ -1,4 +1,4 @@
-import { NavLink } from "../..";
+import { NavLink } from "../../..";
 
 function OtherSiteFooter({ links, number }) {
   const leftList = links.slice(0, 2);

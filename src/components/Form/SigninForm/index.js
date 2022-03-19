@@ -7,11 +7,18 @@ import { NavLink } from "../..";
 import ErrorMsg from "../ErrorMsg";
 import Options from "../Options";
 import { initialValues, validate } from "../validationFunctions";
+import Snackbar from "../../ui/Snackbar";
 
 const fetcher = async (url) => await fetch(url).then((res) => res.json());
 
 function SigninFrom({ formType, isSignin, isHeader, className }) {
   const router = useRouter();
+  const [snackbarData, setSnackbarData] = useState({
+    className: "",
+    status: "",
+    message: "",
+  });
+  const [isSnackbar, setIsSnackbar] = useState(false);
 
   const { data, error } = useSWR("/api/register", fetcher);
 
@@ -23,10 +30,23 @@ function SigninFrom({ formType, isSignin, isHeader, className }) {
       (userData) => userData.email === email && userData.password === password
     );
 
-    if (isEmailAndPassCorrected) {
+    if (isEmailAndPassCorrected.length !== 0) {
+      setIsSnackbar(false);
+      setSnackbarData({
+        className: "",
+        status: "",
+        message: "",
+      });
       router.push("dashboard/profiles");
       return;
     }
+    setIsSnackbar(true);
+
+    setSnackbarData({
+      className: "error",
+      status: "error",
+      message: "An user doesn't exsist",
+    });
   };
 
   const formik = useFormik({
@@ -41,39 +61,44 @@ function SigninFrom({ formType, isSignin, isHeader, className }) {
   };
 
   return (
-    <form className={`${className}Form`} onSubmit={handleSubmit}>
-      {isHeader ? <h2>{formType}</h2> : null}
+    <>
+      <form className={`${className}Form`} onSubmit={handleSubmit}>
+        {isHeader ? <h2>{formType}</h2> : null}
 
-      <input
-        className={setIsError.bind(this, errors.email)}
-        type="email"
-        placeholder="Email or phone number"
-        name="email"
-        value={values.email}
-        onChange={handleChange}
-      />
-      <ErrorMsg component="div" msg={errors.email} />
+        <input
+          className={setIsError.bind(this, errors.email)}
+          type="email"
+          placeholder="Email or phone number"
+          name="email"
+          value={values.email}
+          onChange={handleChange}
+        />
+        <ErrorMsg component="div" msg={errors.email} />
 
-      <input
-        className={setIsError.bind(this, errors.password)}
-        type="password"
-        placeholder="Password"
-        name="password"
-        value={values.password}
-        onChange={handleChange}
-      />
-      <ErrorMsg component="div" msg={errors.password} />
+        <input
+          className={setIsError.bind(this, errors.password)}
+          type="password"
+          placeholder="Password"
+          name="password"
+          value={values.password}
+          onChange={handleChange}
+        />
+        <ErrorMsg component="div" msg={errors.password} />
 
-      {isHeader ? (
-        <button type="submit">{formType}</button>
-      ) : (
-        <>
-          <NavLink href="/" label="Forgot your password?" />
-          <button type="submit">Next</button>
-        </>
-      )}
-      {isSignin ? <Options /> : null}
-    </form>
+        {isHeader ? (
+          <button type="submit">{formType}</button>
+        ) : (
+          <>
+            <NavLink href="/" label="Forgot your password?" />
+            <button type="submit">Next</button>
+          </>
+        )}
+        {isSignin ? <Options /> : null}
+      </form>
+      {isSnackbar ? (
+        <Snackbar {...snackbarData} hideSnackbar={setIsSnackbar} />
+      ) : null}
+    </>
   );
 }
 

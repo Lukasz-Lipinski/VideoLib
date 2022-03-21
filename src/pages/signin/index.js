@@ -1,5 +1,4 @@
 import React from "react";
-import useSWR from "swr";
 import { Form, Layout, Navigation, Footer } from "../../components";
 
 import MyContext from "../../context";

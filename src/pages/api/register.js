@@ -17,9 +17,15 @@ export const downloadUser = async (client, collection) => {
   const db = client.db();
 
   const document = await db.collection(collection).find().toArray();
-
-  console.log(document);
   return document;
+};
+
+export const isUser = (userEmail, document) => {
+  const isUser = document.filter((user) => user.email === userEmail);
+
+  if (isUser.length === 0) return true;
+
+  return false;
 };
 
 export default async function registerHandler(req, res) {
@@ -40,6 +46,12 @@ export default async function registerHandler(req, res) {
         },
       });
       return;
+    }
+
+    const document = downloadUser(client, "users");
+
+    if (isUser(email, document)) {
+      //create redirection
     }
 
     try {

@@ -1,8 +1,15 @@
-export default function Option() {
+export default function Option(props) {
+  const {
+    title,
+    description: { price, opportunities },
+  } = props;
   return (
-    <li>
+    <li className="card">
       <h2>{title}</h2>
-      <section>{description}</section>
+      <section>
+        <div>Price {price}$ per month</div>
+        <div className="description">{opportunities}</div>
+      </section>
       <button>Choose</button>
     </li>
   );

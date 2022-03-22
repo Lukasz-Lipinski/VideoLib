@@ -1,4 +1,4 @@
-import { connectDatebase, downloadUser, isUser } from "./functions";
+import { connectDatebase, downloadUser } from "./functions";
 
 export default async function handler(req, res) {
   let client;

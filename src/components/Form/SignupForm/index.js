@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
 
 import { NavLink } from "../..";
 import ErrorMsg from "../ErrorMsg";
 import { validate, initialValues } from "../validationFunctions";
-import { increamentStep } from "../redux";
 import Snackbar from "../../ui/Snackbar";
 
 function SignupForm({ className }) {
@@ -16,8 +14,6 @@ function SignupForm({ className }) {
     status: "",
     message: "",
   });
-
-  const dispatch = useDispatch();
 
   const onSubmit = (values) => {
     const { password } = values;

@@ -37,7 +37,10 @@ function SigninFrom({ formType, isSignin, isHeader, className }) {
         status: "",
         message: "",
       });
-      router.push("dashboard/profiles");
+
+      const userAccount = email.trim().slice(0, email.indexOf("@"));
+
+      router.push(`/dashboard/${userAccount}`);
       return;
     }
     setIsSnackbar(true);

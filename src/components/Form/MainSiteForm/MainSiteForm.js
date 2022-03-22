@@ -1,26 +1,36 @@
-import React, { useCallback } from "react";
+import { useRouter } from "next/router";
+
+import { useContext, useCallback } from "react";
 import { useFormik } from "formik";
+import useSWR from "swr";
 
 import MyContext from "../../../context/index";
 import ErrorMsg from "../ErrorMsg";
 import { initialValues, validate } from "../validationFunctions";
-import { useSelector } from "react-redux";
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
 function MainSiteForm() {
-  const { classes } = React.useContext(MyContext);
+  const router = useRouter();
+  const { data, error } = useSWR(`/api/all-users`, fetcher);
+
+  const { classes } = useContext(MyContext);
   const { signup } = classes;
 
-  const usersEmails = useSelector((state) => state.form.usersEmails);
-
-  const goToSignupSite = useCallback((email, href) => {
-    localStorage.setItem("email", email);
-    window.location.href = href;
-  }, []);
+  const goToSignupSite = useCallback(
+    (email, href) => {
+      localStorage.setItem("email", email);
+      router.push(href);
+    },
+    [router]
+  );
 
   const onSubmit = (values) => {
     const { email } = values;
     if (email) {
-      usersEmails.includes(email)
+      const { allUsersCollection } = data;
+
+      allUsersCollection.find((el) => el.email === email)
         ? goToSignupSite(email, "/signin")
         : goToSignupSite(email, "/signup/regform");
     }

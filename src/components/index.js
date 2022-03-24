@@ -14,3 +14,4 @@ export { default as CreateProfilePanel } from "./CreateProfilePanel/CreateProfil
 export { default as InfoNavigation } from "./InfoComponents/Navigation/Navigation";
 export { default as Snackbar } from "./ui/Snackbar";
 export { default as Optinos } from "./ui/Options/Options";
+export { default as Card } from "./Dashboard/Card";

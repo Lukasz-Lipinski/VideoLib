@@ -7,7 +7,8 @@ const initialState = {
   user: {
     isLogged: false,
     email: "",
-    password: "",
+    liked: [],
+    phoneNumber: "",
   },
 };
 

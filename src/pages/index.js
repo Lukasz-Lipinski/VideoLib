@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-
 import {
   Layout,
   Navigation,
@@ -9,7 +6,6 @@ import {
   Container,
   Footer,
   FAQ,
-  Snackbar,
 } from "../components";
 
 import { getContentForSite } from "../context/functions";

@@ -5,6 +5,7 @@ export const data = {
     { href: "/", label: "VideoLab" },
     { href: "/signin", label: "Sign in" },
   ],
+  sideNav: ["Personal data", "Profile", "Account"],
   classes: {
     nav: "nav",
     container: "container",

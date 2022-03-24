@@ -15,3 +15,4 @@ export { default as InfoNavigation } from "./InfoComponents/Navigation/Navigatio
 export { default as Snackbar } from "./ui/Snackbar";
 export { default as Optinos } from "./ui/Options/Options";
 export { default as Card } from "./Dashboard/Card";
+export { default as CreateProfileForm } from "./Dashboard/CreateProfileForm";

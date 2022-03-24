@@ -1,13 +1,11 @@
+import { useRouter } from "next/router";
+import { IoMdAddCircleOutline } from "react-icons/io";
+
 import { Card, Layout } from "../../../components";
 import { connectDatebase, downloadUser } from "../../api/functions";
-import { useContext, useState } from "react";
-
-import MyContext from "../../../context/";
 
 function Profiles({ user, isError, msg }) {
-  const [option, setOption] = useState("Personal Data");
-  const ctx = useContext(MyContext);
-  const { sideNav } = ctx;
+  const router = useRouter();
 
   const { profiles } = user;
 
@@ -15,8 +13,22 @@ function Profiles({ user, isError, msg }) {
     return <p>{msg}</p>;
   }
 
-  if (!profiles) {
+  if (!user) {
     return <p>Loading...</p>;
+  }
+
+  const createProfile = () => {
+    router.push("createProfile");
+  };
+
+  if (!profiles) {
+    return (
+      <Layout>
+        <div>
+          <IoMdAddCircleOutline onClick={createProfile} />
+        </div>
+      </Layout>
+    );
   }
 
   return (
@@ -29,6 +41,7 @@ function Profiles({ user, isError, msg }) {
             </li>
           ))}
         </ul>
+        <IoMdAddCircleOutline onClik={createProfile} />
       </section>
     </Layout>
   );

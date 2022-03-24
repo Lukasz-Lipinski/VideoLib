@@ -1,4 +1,5 @@
-function Card() {
+function Card(props) {
+  const {} = props;
   return (
     <>
       <p>Image</p>

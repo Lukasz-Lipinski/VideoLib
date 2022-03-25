@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { IoMdAddCircleOutline } from "react-icons/io";
+import { IoAddSharp } from "react-icons/io5";
 
 import { Card, Layout } from "../../../components";
 import { connectDatebase, downloadUser } from "../../api/functions";
@@ -23,11 +23,13 @@ function Profiles({ user, isError, msg }) {
 
   if (!profiles) {
     return (
-      <Layout>
-        <div>
-          <IoMdAddCircleOutline onClick={createProfile} />
+      <div className="addNewProfile">
+        <div className="addNewProfile-btn" onClick={createProfile}>
+          <p>Create a new profile</p>
+
+          <IoAddSharp />
         </div>
-      </Layout>
+      </div>
     );
   }
 
@@ -41,7 +43,7 @@ function Profiles({ user, isError, msg }) {
             </li>
           ))}
         </ul>
-        <IoMdAddCircleOutline onClik={createProfile} />
+        <IoAddSharp onClik={createProfile} />
       </section>
     </Layout>
   );

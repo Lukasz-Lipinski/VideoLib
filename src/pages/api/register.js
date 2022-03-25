@@ -1,4 +1,5 @@
 import { connectDatebase, insertData, downloadUser } from "./functions";
+import { hashPassword } from "../../lib/auth";
 
 export default async function registerHandler(req, res) {
   if (req.method === "POST") {
@@ -21,7 +22,8 @@ export default async function registerHandler(req, res) {
     }
 
     try {
-      await insertData(client, "users", { email, password });
+      const hashedPassword = hashPassword(password);
+      await insertData(client, "users", { email, password: hashedPassword });
     } catch (error) {
       res.status(500).json({
         feedback: "Incorrected data",

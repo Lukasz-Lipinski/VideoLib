@@ -25,7 +25,7 @@ export async function getStaticProps() {
 }
 
 function RegForm({ links }) {
-  const step = useSelector((state) => state.form.step);
+  const step = useSelector((state) => state.user.step);
   const { classes } = React.useContext(MyContext);
   const { registration } = classes;
 

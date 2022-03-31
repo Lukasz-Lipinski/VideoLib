@@ -1,4 +1,4 @@
-import { getSession } from "next-auth/react";
+import { getSession, signOut } from "next-auth/react";
 import { IoAddSharp } from "react-icons/io5";
 
 import { Card, Layout } from "../../../components";
@@ -8,9 +8,14 @@ function Profiles({ user, isError, msg, profiles }) {
     router.push("createProfile");
   };
 
+  const logoutHandle = async () => {
+    await signOut();
+  };
+
   if (!profiles) {
     return (
       <div className="addNewProfile">
+        <button onClick={logoutHandle}>Logout</button>
         <div className="addNewProfile-btn" onClick={createProfile}>
           <p>Create a new profile</p>
 

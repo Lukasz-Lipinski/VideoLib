@@ -1,22 +1,9 @@
-import { useRouter } from "next/router";
+import { getSession } from "next-auth/react";
 import { IoAddSharp } from "react-icons/io5";
 
 import { Card, Layout } from "../../../components";
-import { connectDatebase, downloadUser } from "../../api/functions";
 
-function Profiles({ user, isError, msg }) {
-  const router = useRouter();
-
-  const { profiles } = user;
-
-  if (isError) {
-    return <p>{msg}</p>;
-  }
-
-  if (!user) {
-    return <p>Loading...</p>;
-  }
-
+function Profiles({ user, isError, msg, profiles }) {
   const createProfile = () => {
     router.push("createProfile");
   };
@@ -50,47 +37,20 @@ function Profiles({ user, isError, msg }) {
 }
 
 export async function getServerSideProps(context) {
-  const { profiles } = context.params;
+  const session = await getSession({ req: context.req });
 
-  let client;
-  try {
-    client = await connectDatebase();
-  } catch (error) {
+  if (!session) {
     return {
-      props: {
-        isError: true,
-        msg: error.message,
+      redirect: {
+        destination: "/signin",
+        permanent: false,
       },
     };
   }
-
-  let allUsers;
-  try {
-    allUsers = await downloadUser(client, "users");
-  } catch (error) {
-    return {
-      props: {
-        isError: true,
-        msg: error.message,
-      },
-    };
-  }
-
-  for (const key of allUsers) {
-    key._id = key._id.toString();
-  }
-
-  const user = allUsers.find((user) => {
-    const { email } = user;
-
-    const userNick = email.slice(0, email.indexOf("@"));
-
-    if (profiles === userNick) return user;
-  });
 
   return {
     props: {
-      user,
+      session,
     },
   };
 }

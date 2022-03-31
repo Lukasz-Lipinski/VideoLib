@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 
 import { NavLink } from "../..";
@@ -31,7 +31,7 @@ function SignupForm({ className }) {
         message: "An account is creating...",
       });
 
-      fetch(`/api/register`, {
+      fetch(`/api/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -55,7 +55,7 @@ function SignupForm({ className }) {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     setEmail(localStorage.getItem("email"));
   }, []);
 

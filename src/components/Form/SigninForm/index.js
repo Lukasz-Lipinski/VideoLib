@@ -1,59 +1,23 @@
-import { useState } from "react";
-import { useRouter } from "next/router";
 import { useFormik } from "formik";
-import useSWR from "swr";
+import { signIn } from "next-auth/react";
 
 import { NavLink } from "../..";
 import ErrorMsg from "../ErrorMsg";
 import Options from "../Options";
-import { initialValues, validate } from "../validationFunctions";
-import Snackbar from "../../ui/Snackbar";
-
-const fetcher = async (url) => await fetch(url).then((res) => res.json());
+import { validate } from "../validationFunctions";
 
 function SigninFrom({ formType, isSignin, isHeader, className }) {
-  const router = useRouter();
-  const [snackbarData, setSnackbarData] = useState({
-    className: "",
-    status: "",
-    message: "",
-  });
-  const [isSnackbar, setIsSnackbar] = useState(false);
-
-  const { data, error } = useSWR("/api/register", fetcher);
-
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     const { email, password } = values;
-    const { users } = data;
 
-    const isEmailAndPassCorrected = users.filter(
-      (userData) => userData.email === email && userData.password === password
-    );
-
-    if (isEmailAndPassCorrected.length !== 0) {
-      setIsSnackbar(false);
-      setSnackbarData({
-        className: "",
-        status: "",
-        message: "",
-      });
-
-      const userAccount = email.trim().slice(0, email.indexOf("@"));
-
-      router.push(`/dashboard/${userAccount}`);
-      return;
-    }
-    setIsSnackbar(true);
-
-    setSnackbarData({
-      className: "error",
-      status: "error",
-      message: "An user doesn't exsist",
+    await signIn("credentials", {
+      email,
+      password,
     });
   };
 
   const formik = useFormik({
-    initialValues,
+    initialValues: { email: "", password: "" },
     validate,
     onSubmit,
   });
@@ -98,9 +62,6 @@ function SigninFrom({ formType, isSignin, isHeader, className }) {
         )}
         {isSignin ? <Options /> : null}
       </form>
-      {isSnackbar ? (
-        <Snackbar {...snackbarData} hideSnackbar={setIsSnackbar} />
-      ) : null}
     </>
   );
 }

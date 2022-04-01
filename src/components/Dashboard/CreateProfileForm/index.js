@@ -44,7 +44,6 @@ function CreateProfileForm() {
             value={values.forKids}
             onChange={handleChange}
           />
-          <span className="checkbox-indicator"></span>
         </label>
       </div>
       <button type="submit">Create</button>

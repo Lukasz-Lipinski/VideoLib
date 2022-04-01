@@ -27,7 +27,7 @@ export default NextAuth({
         if (passwordsAreEqual) {
           return {
             email: user.email,
-            password: user.password,
+            profile: user.profile ? user.profile : 0,
           };
         } else {
           throw new Error("Invalid usere's data");

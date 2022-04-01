@@ -34,8 +34,6 @@ function SigninPage({ number }) {
     router.push(`/dashboard/${userLogin}`);
   }
 
-  console.log(status);
-
   return (
     <>
       <Navigation />

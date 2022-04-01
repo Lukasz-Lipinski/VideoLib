@@ -1,11 +1,16 @@
 import { getSession, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 import { IoAddSharp } from "react-icons/io5";
 
 import { Card, Layout } from "../../../components";
+import { connectDatebase } from "../../api/functions";
 
-function Profiles({ user, isError, msg, profiles }) {
+function Profiles({ user }) {
+  const { profiles } = user;
+  const router = useRouter();
+
   const createProfile = () => {
-    router.push("createProfile");
+    router.push("/dashboard/createProfile");
   };
 
   const logoutHandle = async () => {
@@ -53,9 +58,16 @@ export async function getServerSideProps(context) {
     };
   }
 
+  const client = await connectDatebase();
+  const user = await client
+    .db()
+    .collection("users")
+    .findOne({ email: session.user.email });
+
   return {
     props: {
       session,
+      user: session.user,
     },
   };
 }

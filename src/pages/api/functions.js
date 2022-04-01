@@ -19,11 +19,3 @@ export const downloadUser = async (client, collection) => {
   const document = await db.collection(collection).find().toArray();
   return document;
 };
-
-export const isUser = (userEmail, document) => {
-  const isUser = document.filter((user) => user.email === userEmail);
-
-  if (isUser.length === 0) return false;
-
-  return true;
-};

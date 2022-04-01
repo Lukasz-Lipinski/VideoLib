@@ -39,40 +39,66 @@
     font-size: 2rem;
     outline: 3px solid $grey;
     padding: 4rem;
+    min-width: 400px;
+    max-width: 600px;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
-    max-height: 45vh;
-    min-height: 300px;
-    max-width: 45vw;
-    min-width: 450px;
 
     &-error {
       text-align: center;
       color: $secondary-color;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
+      width: 100%;
     }
 
     div {
-      padding-block: 10px;
+      width: 100%;
+      margin-block: 10px;
 
-      input {
+      input[type="text"] {
         font-size: 1.3rem;
         padding: 8px;
         border-radius: 5px;
         margin-left: 15px;
+        min-width: 100px;
       }
 
-      input[type="checkbox"] {
-        appearance: none;
-        background-color: $secondary-color;
-      }
+      .checkbox {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
 
-      input[type="checkbox"]:checked {
-        color: $white;
-        font-size: large;
+        * {
+          cursor: pointer;
+        }
+
+        &-input {
+          appearance: none;
+          border: 3px solid $grey;
+          width: 1.4rem;
+          height: 1.4rem;
+          font-size: 1rem;
+          padding: 12px;
+          font-weight: bold;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: 20px;
+        }
+
+        &-input:checked {
+          background-color: red;
+        }
+
+        &-input:checked::after{
+          content: "X";
+          color: $white;
+        }
+
       }
-    }
+      
+      }
 
     button {
       @extend %button;

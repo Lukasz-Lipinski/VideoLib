@@ -7,7 +7,7 @@ import { Form, Layout, Navigation, Footer } from "../../components";
 import MyContext from "../../context";
 import { getContentForSite } from "../../context/functions";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const number = getContentForSite("number");
 
   return {

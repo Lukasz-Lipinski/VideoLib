@@ -59,15 +59,17 @@ export async function getServerSideProps(context) {
   }
 
   const client = await connectDatebase();
-  const user = await client
+  let user = await client
     .db()
     .collection("users")
     .findOne({ email: session.user.email });
 
+  user._id = user._id.toString();
+
   return {
     props: {
       session,
-      user: session.user,
+      user,
     },
   };
 }

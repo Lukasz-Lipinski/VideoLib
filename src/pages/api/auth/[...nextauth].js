@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
-import { connectDatebase, downloadUser } from ".././functions";
+import { connectDatebase } from ".././functions";
 import { comparePassword } from "../../../lib/auth";
 
 export default NextAuth({

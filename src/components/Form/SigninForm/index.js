@@ -23,8 +23,6 @@ function SigninFrom({ formType, isSignin, isHeader, className }) {
   });
   const { errors, values, handleChange, handleSubmit } = formik;
 
-  console.log(errors, values);
-
   const setIsError = (condition) => {
     if (condition) return "error-true";
   };

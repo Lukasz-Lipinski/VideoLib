@@ -66,6 +66,8 @@ export async function getServerSideProps(context) {
 
   user._id = user._id.toString();
 
+  client.close();
+
   return {
     props: {
       session,

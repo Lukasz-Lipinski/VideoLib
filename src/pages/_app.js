@@ -7,13 +7,16 @@ import "../../styles/index.scss";
 
 function MyApp({ Component, pageProps, session }) {
   return (
-    <Provider store={store}>
-      <SessionProvider session={session}>
+    <SessionProvider
+      basePath={`${process.env.NEXTAUTH_URL}/api/auth`}
+      session={session}
+    >
+      <Provider store={store}>
         <MyContext.Provider value={data}>
           <Component {...pageProps} />
         </MyContext.Provider>
-      </SessionProvider>
-    </Provider>
+      </Provider>
+    </SessionProvider>
   );
 }
 

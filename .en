@@ -1,4 +1,0 @@
-NEXT_PUBLIC_API_KEY=key2vtUisGp7gjg2R
-NEXT_PUBLIC_ENDPOINT_FOR_USERS=appkhOMbsYoBRKRrM
-NEXT_PUBLIC_MONGO_BASE_URL=mongodb+srv://admin_videolib:admin_videolib@cluster0.cpxb3.mongodb.net/users?retryWrites=true&w=majority
-NEXT_PUBLIC_NEXTAUTH_URL=localhost:3000

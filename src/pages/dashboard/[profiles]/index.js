@@ -19,12 +19,12 @@ function Profiles({ user }) {
 
   if (!profiles) {
     return (
-      <div className="addNewProfile">
+      <div className="profiles">
         <button onClick={logoutHandle}>Logout</button>
-        <div className="addNewProfile-btn" onClick={createProfile}>
+        <div className="profiles-btn" onClick={createProfile}>
           <p>Create a new profile</p>
 
-          <IoAddSharp />
+          <IoAddSharp onClick={createProfile} />
         </div>
       </div>
     );
@@ -34,13 +34,13 @@ function Profiles({ user }) {
     <Layout>
       <section className="profiles">
         <ul>
-          {profiles.map((profile) => (
+          {profiles.map((profile, index) => (
             <li key={`profile-list-${index}`}>
               <Card {...profile} />
             </li>
           ))}
         </ul>
-        <IoAddSharp onClik={createProfile} />
+        <IoAddSharp onClick={createProfile} />
       </section>
     </Layout>
   );

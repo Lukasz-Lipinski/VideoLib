@@ -24,7 +24,7 @@ export async function getStaticProps() {
   };
 }
 
-function RegForm({ links }) {
+function RegFormPage({ links }) {
   const step = useSelector((state) => state.user.step);
   const { classes } = React.useContext(MyContext);
   const { registration } = classes;
@@ -57,4 +57,4 @@ function RegForm({ links }) {
   );
 }
 
-export default RegForm;
+export default RegFormPage;

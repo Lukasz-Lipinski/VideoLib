@@ -31,9 +31,13 @@ const formSlicer = createSlice({
       state.users = action.payload.map((user) => user.fields);
       state.usersEmails = action.payload.map((user) => user.fields.email);
     },
+    resetStep: (state, action) => {
+      state.step = 1;
+    },
   },
 });
 
-export const { increamentStep, setUserStatus, setUsers } = formSlicer.actions;
+export const { increamentStep, setUserStatus, setUsers, resetStep } =
+  formSlicer.actions;
 
 export default formSlicer.reducer;

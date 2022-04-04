@@ -3,6 +3,19 @@ export default function Option(props) {
     title,
     description: { price, opportunities },
   } = props;
+
+  const email = localStorage.getItem("email");
+
+  const takeAbonamentHandler = async () => {
+    const result = await fetch("/api/update/abonament", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user: { email } }),
+    });
+  };
+
   return (
     <li className="card">
       <h2>{title}</h2>
@@ -10,7 +23,7 @@ export default function Option(props) {
         <div>Price {price}$ per month</div>
         <div className="description">{opportunities}</div>
       </section>
-      <button>Choose</button>
+      <button onClick={takeAbonamentHandler}>Choose</button>
     </li>
   );
 }

@@ -1,4 +1,8 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import { Optinos } from "../";
+import { resetStep } from "../Form/redux";
 
 const DUMMY_DATA = [
   {
@@ -28,6 +32,14 @@ const DUMMY_DATA = [
 ];
 
 const Step3 = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetStep());
+    };
+  }, [dispatch]);
+
   return (
     <>
       <h2>Step 3</h2>

@@ -94,7 +94,9 @@ function SignupForm({ className }) {
         <NavLink href="/info/forgot" label="Forgot your password?" />
         <button type="submit">Next</button>
       </form>
-      {snackbar && <Snackbar {...snackbarData} hideSnackbar={setSnackbar} />}
+      {snackbar && (
+        <Snackbar {...snackbarData} hideSnackbar={setSnackbar} isStep="true" />
+      )}
     </>
   );
 }

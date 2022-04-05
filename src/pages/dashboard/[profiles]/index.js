@@ -33,6 +33,8 @@ function Profiles({ user }) {
   return (
     <Layout>
       <section className="profiles">
+        <button onClick={logoutHandle}>Logout</button>
+
         <ul>
           {profiles.map((profile, index) => (
             <li key={`profile-list-${index}`}>

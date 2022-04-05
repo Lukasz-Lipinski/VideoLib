@@ -1,6 +1,16 @@
 import { connectDatebase, insertData, downloadUser } from "../functions";
 import { hashPassword } from "../../../lib/auth";
 
+const checkIsEmail = async (email, client) => {
+  const result = await client.db().collection("users").findOne({ email });
+
+  if (result) {
+    return true;
+  }
+
+  return false;
+};
+
 export default async function registerHandler(req, res) {
   if (req.method === "POST") {
     const { email, password } = req.body;
@@ -21,6 +31,16 @@ export default async function registerHandler(req, res) {
       return;
     }
 
+    const isUser = await checkIsEmail(email, client);
+
+    if (isUser) {
+      res
+        .status(200)
+        .json({ message: "Assigned email is already used", status: "error" });
+      client.close();
+      return;
+    }
+
     try {
       const hashedPassword = await hashPassword(password);
       await insertData(client, "users", { email, password: hashedPassword });
@@ -38,12 +58,12 @@ export default async function registerHandler(req, res) {
 
     res.status(200).json({
       feedback: "account created successfully",
-      snackbar: {
-        className: "success",
-        status: "success",
-        message: "An account was created successfully",
-      },
+      message: "An account was created successfully",
+      status: "success",
     });
+
+    client.close();
+    return;
   }
 
   let client;

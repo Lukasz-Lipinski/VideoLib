@@ -1,9 +1,8 @@
-function Card(props) {
-  const {} = props;
+function Card({ profileName, kidSecurity }) {
   return (
     <>
       <p>Image</p>
-      <p>Profile&apos;s name</p>
+      <p>{profileName}</p>
     </>
   );
 }

@@ -8,23 +8,26 @@ export default function Snackbar(props) {
   const { className, status, message, hideSnackbar, isStep } = props;
 
   const dispatch = useDispatch();
+  const increment = isStep && status === "success";
 
   useEffect(() => {
     if (status !== "pending") {
       const timer = setInterval(() => {
         hideSnackbar(false);
-        isStep ? dispatch(increamentStep()) : null;
+        increment ? dispatch(increamentStep()) : null;
       }, 3000);
 
       return () => {
         clearInterval(timer);
       };
     }
-  }, [hideSnackbar, status, isStep, dispatch]);
+  }, [hideSnackbar, status, increment, dispatch]);
 
   const handleClick = () => {
-    hideSnackbar(false);
-    isStep ? dispatch(increamentStep()) : null;
+    if (status !== "pending") {
+      hideSnackbar(false);
+      increment ? dispatch(increamentStep()) : null;
+    }
   };
 
   return createPortal(

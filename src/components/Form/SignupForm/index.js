@@ -44,10 +44,10 @@ function SignupForm({ className }) {
           }
         })
         .then((data) => {
-          const { className, status, message } = data.snackbar;
+          const { message, status } = data;
 
           setSnackbarData({
-            className,
+            className: status,
             status,
             message,
           });

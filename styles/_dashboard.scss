@@ -29,16 +29,24 @@
 
 .createProfile {
   background-color: $border;
-  padding: 3rem;
+  padding: 1rem;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+
+  #logo {
+    width: 100%;
+
+    a {
+      @extend %logo;
+    text-align: left;
+    }
+  }
 
   &-form {
     font-size: 2rem;
-    outline: 3px solid $grey;
-    padding: 4rem;
+    padding-block: 2rem;
     min-width: 400px;
     max-width: 600px;
     display: flex;
@@ -52,9 +60,24 @@
       width: 100%;
     }
 
+    #name {
+      padding-top: 40px;
+      border-top: 3px solid $grey;
+    }
+
+    #kidsSecurity {
+      padding-bottom: 40px;
+      border-bottom: 3px solid $grey;
+    }
+
+
     div {
       width: 100%;
       margin-block: 10px;
+
+      p {
+        color: $grey;
+      }
 
       input[type="text"] {
         font-size: 1.3rem;
@@ -62,6 +85,7 @@
         border-radius: 5px;
         margin-left: 15px;
         min-width: 100px;
+        max-width: 500px;
       }
 
       .checkbox {
@@ -98,23 +122,41 @@
 
       }
       
+    }
+
+    &-buttons {
+      display: inline-flex;
+      padding-block: 20px;  
+
+      button {
+        @extend %button;
+        font-size: 1.7rem;
+        padding: 12px 20px;
+        border: none;
+        outline: 3px solid $grey;
+        background-color: transparent;
       }
 
-    button {
-      @extend %button;
-      font-size: 1.7rem;
-      margin-top: 15%;
-      padding: 12px 20px;
-      border: none;
-      outline: 3px solid $grey;
-      background-color: transparent;
-    }
+      button:hover {
+        background-color: $grey;
+      }
+      button:active {
+        background-color: $black;
+      }
+      
+      button:first-child {
+        background-color: white;
+        color: $black;
+        margin-right: 30px;
+        outline: 3px solid $white;
 
-    button:hover {
-      background-color: $grey;
-    }
-    button:active {
-      background-color: $black;
+        &:hover {
+          background-color: $secondary-color-dark;
+          color: $white;
+          outline: 3px solid $secondary-color-dark;
+
+        }
+      }
     }
   }
 }

@@ -65,14 +65,22 @@ function CreateProfileForm({ user }) {
     },
   });
 
+  const cancelHanlder = () => {
+    router.back();
+  };
+
   return (
-    <>
+    <div className="createProfile-container">
+      <div>
+        <h1>Add a profile</h1>
+        <p>add another-pearson profile using VideoLib&apos; s services</p>
+      </div>
       <form className="createProfile-form" onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="profileName">Profile name:</label>
+        <div id="name">
           <input
             id="profileName"
             type="text"
+            placeholder="Name"
             values={values.profileName}
             onChange={handleChange}
           />
@@ -80,9 +88,9 @@ function CreateProfileForm({ user }) {
         {errors.isError ? (
           <div className="createProfile-form-error">{errors.msg}</div>
         ) : null}
-        <div>
+        <div id="kidsSecurity">
           <label htmlFor="forKids" className="checkbox">
-            For kids
+            For kids?
             <input
               type="checkbox"
               id="forKids"
@@ -92,12 +100,17 @@ function CreateProfileForm({ user }) {
             />
           </label>
         </div>
-        <button type="submit">Create</button>
+        <div className="createProfile-form-buttons">
+          <button type="submit">Create</button>
+          <button type="button" onClick={cancelHanlder}>
+            Cancel
+          </button>
+        </div>
       </form>
       {snackbar ? (
         <Snackbar {...snackbarData} hideSnackbar={setSnackbar} />
       ) : null}
-    </>
+    </div>
   );
 }
 

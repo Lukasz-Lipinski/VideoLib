@@ -2,8 +2,10 @@ import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import randomColor from "randomcolor";
+import { BsEmojiSmile } from "react-icons/bs";
 
 import { Snackbar } from "../../";
+import Image from "next/image";
 
 function CreateProfileForm({ user }) {
   const router = useRouter();
@@ -12,6 +14,10 @@ function CreateProfileForm({ user }) {
     className: "",
     status: "",
     message: "",
+  });
+
+  const color = randomColor({
+    luminosity: "dark",
   });
 
   const { errors, handleSubmit, values, handleChange } = useFormik({
@@ -30,9 +36,7 @@ function CreateProfileForm({ user }) {
     },
     onSubmit: function (values) {
       const { profileName, forKids } = values;
-      const color = randomColor({
-        luminosity: "dark",
-      });
+
       setSnackbarData({
         className: "pending",
         status: "pending",
@@ -81,6 +85,7 @@ function CreateProfileForm({ user }) {
       </div>
       <form className="createProfile-form" onSubmit={handleSubmit}>
         <div className="createProfile-form-content">
+          <BsEmojiSmile className="createProfile-form-content-image" />
           <div id="name">
             <input
               id="profileName"
@@ -105,6 +110,7 @@ function CreateProfileForm({ user }) {
             </label>
           </div>
         </div>
+
         <div className="createProfile-form-content-buttons">
           <button type="submit">Create</button>
           <button type="button" onClick={cancelHanlder}>

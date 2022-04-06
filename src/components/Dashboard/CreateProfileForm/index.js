@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import randomColor from "randomcolor";
 
 import { Snackbar } from "../../";
 
@@ -29,6 +30,9 @@ function CreateProfileForm({ user }) {
     },
     onSubmit: function (values) {
       const { profileName, forKids } = values;
+      const color = randomColor({
+        luminosity: "dark",
+      });
       setSnackbarData({
         className: "pending",
         status: "pending",
@@ -41,7 +45,7 @@ function CreateProfileForm({ user }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ profileName, forKids, user }),
+        body: JSON.stringify({ profileName, forKids, user, color }),
       })
         .then((res) => {
           if (res.ok) {
@@ -76,31 +80,32 @@ function CreateProfileForm({ user }) {
         <p>add another-pearson profile using VideoLib&apos; s services</p>
       </div>
       <form className="createProfile-form" onSubmit={handleSubmit}>
-        <div id="name">
-          <input
-            id="profileName"
-            type="text"
-            placeholder="Name"
-            values={values.profileName}
-            onChange={handleChange}
-          />
-        </div>
-        {errors.isError ? (
-          <div className="createProfile-form-error">{errors.msg}</div>
-        ) : null}
-        <div id="kidsSecurity">
-          <label htmlFor="forKids" className="checkbox">
-            For kids?
+        <div className="createProfile-form-content">
+          <div id="name">
             <input
-              type="checkbox"
-              id="forKids"
-              className="checkbox-input"
-              value={values.forKids}
+              id="profileName"
+              type="text"
+              placeholder="Name"
+              values={values.profileName}
               onChange={handleChange}
             />
-          </label>
+            {errors.isError && <div id="name-error">{errors.msg}</div>}
+          </div>
+
+          <div id="kidsSecurity">
+            <label htmlFor="forKids" className="checkbox">
+              For kids?
+              <input
+                type="checkbox"
+                id="forKids"
+                className="checkbox-input"
+                value={values.forKids}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
         </div>
-        <div className="createProfile-form-buttons">
+        <div className="createProfile-form-content-buttons">
           <button type="submit">Create</button>
           <button type="button" onClick={cancelHanlder}>
             Cancel

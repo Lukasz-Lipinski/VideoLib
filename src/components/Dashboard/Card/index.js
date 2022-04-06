@@ -1,8 +1,12 @@
-function Card({ profileName, kidSecurity }) {
+import { BsEmojiSmile } from "react-icons/bs";
+
+function Card({ profileName, kidSecurity, bgColor }) {
   return (
     <>
-      <p>Image</p>
-      <p>{profileName}</p>
+      <div className="icon" style={{ backgroundColor: bgColor }}>
+        <BsEmojiSmile />
+      </div>
+      <p className="profileName">{profileName}</p>
     </>
   );
 }

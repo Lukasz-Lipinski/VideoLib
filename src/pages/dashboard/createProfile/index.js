@@ -13,7 +13,7 @@ function CreateProfilePage({ user }) {
 
   return (
     <div className="createProfile">
-      <div id="logo">
+      <div>
         <Link
           href={{
             pathname: "/dashboard/[profile]",

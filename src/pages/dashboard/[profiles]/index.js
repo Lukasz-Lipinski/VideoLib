@@ -2,7 +2,7 @@ import { getSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import { IoAddSharp } from "react-icons/io5";
 
-import { Card, Layout } from "../../../components";
+import { Card, Logo } from "../../../components";
 import { connectDatebase } from "../../api/functions";
 
 function Profiles({ user }) {
@@ -31,20 +31,24 @@ function Profiles({ user }) {
   }
 
   return (
-    <Layout>
-      <section className="profiles">
+    <section className="profiles">
+      <div className="profiles-nav">
+        <Logo />
         <button onClick={logoutHandle}>Logout</button>
-
-        <ul>
-          {profiles.map((profile, index) => (
-            <li key={`profile-list-${index}`}>
-              <Card {...profile} />
-            </li>
-          ))}
-        </ul>
-        <IoAddSharp onClick={createProfile} />
-      </section>
-    </Layout>
+      </div>
+      <h1>Who&apos;s watching?</h1>
+      <ul>
+        {profiles.map((profile, index) => (
+          <li key={`profile-list-${index}`}>
+            <Card {...profile} />
+          </li>
+        ))}
+        <li>
+          <IoAddSharp onClick={createProfile} />
+        </li>
+      </ul>
+      <button>Manage profiles</button>
+    </section>
   );
 }
 

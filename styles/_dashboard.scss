@@ -1,10 +1,9 @@
-@use '_variables' as *;
-@use "_mixins" as *;
-@use "_animations" as *;
-@use "classes" as *;
+@use "_variables"as *;
+@use "_mixins"as *;
+@use "_animations"as *;
+@use "classes"as *;
 
-
-.addNewProfile{
+.addNewProfile {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -18,7 +17,7 @@
     align-items: center;
     outline: 4px solid $grey;
     border-radius: 10px;
-    font-size: 3.0rem;
+    font-size: 3rem;
     padding: 1rem;
 
     p {
@@ -35,126 +34,141 @@
   flex-direction: column;
   align-items: center;
 
-  #logo {
-    width: 100%;
+  &-container {
+    padding: 2rem 1rem;
 
-    a {
-      @extend %logo;
-    text-align: left;
+    @media only screen and(max-width: 500px) {
+      padding-block: 1rem;
     }
   }
 
   &-form {
     font-size: 2rem;
     padding-block: 2rem;
-    min-width: 400px;
-    max-width: 600px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    min-width: 300px;
+    max-width: 900px;
 
-    &-error {
-      text-align: center;
-      color: $secondary-color;
-      font-size: 1.5rem;
+    &-content {
+      display: flex;
       width: 100%;
-    }
+      border-block: 3px solid $grey;
+      padding-block: 4rem;
 
-    #name {
-      padding-top: 40px;
-      border-top: 3px solid $grey;
-    }
-
-    #kidsSecurity {
-      padding-bottom: 40px;
-      border-bottom: 3px solid $grey;
-    }
-
-
-    div {
-      width: 100%;
-      margin-block: 10px;
-
-      p {
-        color: $grey;
+      @media only screen and (max-width: 544px) {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100%;
       }
 
-      input[type="text"] {
-        font-size: 1.3rem;
-        padding: 8px;
-        border-radius: 5px;
-        margin-left: 15px;
-        min-width: 100px;
-        max-width: 500px;
-      }
+      #name {
 
-      .checkbox {
-        display: inline-flex;
-        align-items: center;
-        cursor: pointer;
-
-        * {
-          cursor: pointer;
+        &-error {
+          text-align: center;
+          color: $secondary-color;
+          font-size: 1.5rem;
+          width: 100%;
+          padding-top: 1rem;
         }
+      }
 
-        &-input {
-          appearance: none;
-          border: 3px solid $grey;
-          width: 1.4rem;
-          height: 1.4rem;
-          font-size: 1rem;
-          padding: 12px;
-          font-weight: bold;
+      div {
+        width: 100%;
+        margin-block: 10px;
+
+        @media only screen and(max-width: 544px) {
           display: flex;
           justify-content: center;
+        }
+
+        p {
+          color: $grey;
+        }
+
+        input[type="text"] {
+          font-size: 1.3rem;
+          padding: 8px;
+          border-radius: 5px;
+          margin-left: 15px;
+          min-width: 100px;
+          max-width: 500px;
+        }
+
+        .checkbox {
+          display: inline-flex;
           align-items: center;
-          margin-left: 20px;
+          cursor: pointer;
+          padding-left: 20px;
+
+          @media only screen and(max-width: 544px) {
+            padding: 0;
+          }
+
+          * {
+            cursor: pointer;
+          }
+
+          &-input {
+            appearance: none;
+            border: 3px solid $grey;
+            width: 1.4rem;
+            height: 1.4rem;
+            font-size: 1rem;
+            padding: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 20px;
+          }
+
+          &-input:checked {
+            background-color: red;
+          }
+
+          &-input:checked::after {
+            content: "X";
+            color: $white;
+          }
+        }
+      }
+
+      &-buttons {
+        display: inline-flex;
+        padding-block: 2rem;
+
+        @media only screen and(max-width: 524px) {
+          width: 100%;
+          justify-content: center;
         }
 
-        &-input:checked {
-          background-color: red;
+        button {
+          @extend %button;
+          font-size: 1.7rem;
+          padding: 12px 20px;
+          border: none;
+          outline: 3px solid $grey;
+          background-color: transparent;
         }
 
-        &-input:checked::after{
-          content: "X";
-          color: $white;
+        button:hover {
+          background-color: $grey;
         }
 
-      }
-      
-    }
+        button:active {
+          background-color: $black;
+        }
 
-    &-buttons {
-      display: inline-flex;
-      padding-block: 20px;  
+        button:first-child {
+          background-color: $white;
+          color: $black;
+          margin-right: 30px;
+          outline: 3px solid $white;
 
-      button {
-        @extend %button;
-        font-size: 1.7rem;
-        padding: 12px 20px;
-        border: none;
-        outline: 3px solid $grey;
-        background-color: transparent;
-      }
-
-      button:hover {
-        background-color: $grey;
-      }
-      button:active {
-        background-color: $black;
-      }
-      
-      button:first-child {
-        background-color: white;
-        color: $black;
-        margin-right: 30px;
-        outline: 3px solid $white;
-
-        &:hover {
-          background-color: $secondary-color-dark;
-          color: $white;
-          outline: 3px solid $secondary-color-dark;
-
+          &:hover {
+            background-color: $secondary-color-dark;
+            color: $white;
+            outline: 3px solid $secondary-color-dark;
+          }
         }
       }
     }

@@ -1,11 +1,11 @@
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import randomColor from "randomcolor";
 import { BsEmojiSmile } from "react-icons/bs";
+import { MdOutlineChildCare } from "react-icons/md";
 
 import { Snackbar } from "../../";
-import Image from "next/image";
 
 function CreateProfileForm({ user }) {
   const router = useRouter();
@@ -16,9 +16,13 @@ function CreateProfileForm({ user }) {
     message: "",
   });
 
-  const color = randomColor({
-    luminosity: "dark",
-  });
+  const bgColor = useMemo(
+    () =>
+      randomColor({
+        luminosity: "dark",
+      }),
+    []
+  );
 
   const { errors, handleSubmit, values, handleChange } = useFormik({
     initialValues: { profileName: "", forKids: false },
@@ -49,7 +53,7 @@ function CreateProfileForm({ user }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ profileName, forKids, user, color }),
+        body: JSON.stringify({ profileName, forKids, user, bgColor }),
       })
         .then((res) => {
           if (res.ok) {
@@ -85,7 +89,18 @@ function CreateProfileForm({ user }) {
       </div>
       <form className="createProfile-form" onSubmit={handleSubmit}>
         <div className="createProfile-form-content">
-          <BsEmojiSmile className="createProfile-form-content-image" />
+          {values.forKids ? (
+            <MdOutlineChildCare
+              style={{ backgroundColor: bgColor }}
+              className="createProfile-form-content-image"
+            />
+          ) : (
+            <BsEmojiSmile
+              style={{ backgroundColor: bgColor }}
+              className="createProfile-form-content-image"
+            />
+          )}
+
           <div id="name">
             <input
               id="profileName"

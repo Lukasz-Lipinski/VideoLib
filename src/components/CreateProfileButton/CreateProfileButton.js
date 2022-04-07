@@ -1,13 +1,12 @@
 import { BsPlusCircle } from "react-icons/bs";
 
-function CreateProfilePanel() {
+function CreateProfileButton() {
   const handleClick = () => {};
   return (
     <>
-      {}
       <BsPlusCircle onClick={handleClick} />
     </>
   );
 }
 
-export default CreateProfilePanel;
+export default CreateProfileButton;

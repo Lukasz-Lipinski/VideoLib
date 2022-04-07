@@ -43,7 +43,7 @@ function Profiles({ user }) {
             <Card {...profile} />
           </li>
         ))}
-        <li>
+        <li className="addProfile">
           <IoAddSharp onClick={createProfile} />
         </li>
       </ul>

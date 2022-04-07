@@ -20,10 +20,11 @@ export default async function handler(req, res) {
       const { abonament } = req.body;
       data = abonament;
     } else {
-      const { profileName, forKids } = req.body;
+      const { profileName, forKids, bgColor } = req.body;
       data = {
         profileName,
         kidSecurity: forKids,
+        bgColor,
       };
     }
 

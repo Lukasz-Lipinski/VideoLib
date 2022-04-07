@@ -47,7 +47,7 @@ function Profiles({ user }) {
           <IoAddSharp onClick={createProfile} />
         </li>
       </ul>
-      <button>Manage profiles</button>
+      <button className="manageProfile-btn">Manage profiles</button>
     </section>
   );
 }

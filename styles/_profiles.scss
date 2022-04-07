@@ -66,6 +66,11 @@
       .profileName {
         text-align: center;
       }
+
+      a {
+        text-decoration: none;
+        color: $white;
+      }
     }
 
     .addProfile {
@@ -80,5 +85,30 @@
       }
     }
 
+  }
+
+  button {
+    @extend %button;
+    border: none;
+  }
+
+  .manageProfile-btn {
+    background-color: transparent;
+    margin-top: 20px;
+    padding: 20px 60px;
+    outline: 3px solid $grey;
+    color: $grey-light;
+    font-size: 1.2rem;
+
+    &:hover {
+      background-color: $grey-light;
+      outline: 3px solid $grey-light;
+      color: $border;
+    }
+
+    @media only screen and (max-width: 586px) {
+      margin-top: 10px;
+      padding: 10px 30px;
+    }
   }
 }

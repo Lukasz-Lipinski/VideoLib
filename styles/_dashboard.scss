@@ -197,3 +197,82 @@
     }
   }
 }
+
+.dashboard {
+  &-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 30%, rgba(0, 0, 0, 1) 90%);
+
+    &-left {
+      display: inline-flex;
+
+      ul {
+        display: inline-flex;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        margin-left: 20px;
+
+        li {
+
+          a {
+            padding: 10px 14px;
+            color: $grey-light;
+            text-decoration: none;
+            cursor: pointer;
+
+            &:hover {
+              color: $grey;
+            }
+          }
+        }
+      }
+    }
+
+    &-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.4rem;
+
+      &-avatar {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      span,
+      >* {
+        cursor: pointer;
+        padding: 5px;
+
+
+        label {
+          input {
+            font-size: 1.2rem;
+            padding: 10px 10px 10px 40px;
+            background-color: $border;
+            border: none;
+            outline: 1px solid $grey;
+
+            &:hover,
+            &:focus {
+              outline: 1px solid $white;
+              color: $white;
+            }
+          }
+
+          svg {
+            position: relative;
+            left: 30px;
+            top: 4px;
+          }
+        }
+      }
+    }
+  }
+}

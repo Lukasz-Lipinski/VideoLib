@@ -17,3 +17,4 @@ export { default as Optinos } from "./ui/Options/Options";
 export { default as Card } from "./Dashboard/Card";
 export { default as CreateProfileForm } from "./Dashboard/CreateProfileForm";
 export { default as Logo } from "./ui/Logo/Logo";
+export { default as DashboardNav } from "./Dashboard/Navigation/Navigation";

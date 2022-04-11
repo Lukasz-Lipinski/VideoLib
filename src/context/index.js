@@ -107,6 +107,16 @@ export const data = {
         },
       ],
     },
+    userProfiles: {
+      nav: [
+        { label: "Main site", href: "/dashboard/userAccount" },
+        { label: "Serials", href: "/dashboard/genre/serials" },
+        { label: "Movies", href: "/dashboard/genre/movies" },
+        { label: "New and popular", href: "/dashboard/genre/new-and-popular" },
+        { label: "My list", href: "/dashboard/userAccount/favorites" },
+        { label: "Sounds and lyrics", href: "/dashboard/sounds-and-lyrics" },
+      ],
+    },
   },
 };
 

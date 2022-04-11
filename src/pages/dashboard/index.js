@@ -1,13 +1,6 @@
 import { getSession } from "next-auth/react";
-import { Layout } from "../../components";
 
-function Dashboard() {
-  return (
-    <div>
-      <Layout></Layout>
-    </div>
-  );
-}
+function Dashboard() {}
 
 export const getServerSideProps = async (ctx) => {
   const session = await getSession({
@@ -23,9 +16,14 @@ export const getServerSideProps = async (ctx) => {
     };
   }
 
+  const { email } = session.user;
+
+  const userLogin = email.slice(0, email.indexOf("@"));
+
   return {
-    props: {
-      session,
+    redirect: {
+      destination: `/dashboard/${userLogin}`,
+      pernament: false,
     },
   };
 };

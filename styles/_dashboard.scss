@@ -199,6 +199,41 @@
 }
 
 .dashboard {
+  &-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &-viedoList {
+      display: inline-flex;
+      list-style: none;
+      overflow: scroll;
+      margin: 0;
+      padding: 10px 0;
+      width: 95vw;
+      overflow-y: hidden;
+      overflow-x: hidden;
+
+      &:hover {
+        overflow-x: scroll;
+      }
+
+      li {
+        padding: 10px;
+        margin: 0;
+        transition: transform 0.4s;
+        transform: scale(1);
+
+        &:hover {
+          transform: scale(1.03);
+          transition: transform 0.4s;
+        }
+      }
+    }
+  }
+
+
   &-nav {
     display: flex;
     justify-content: space-between;
@@ -243,6 +278,29 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
+
+        &:hover {
+          p {
+            transform: rotateZ(180deg);
+          }
+        }
+
+        p {
+          display: flex;
+          margin: 0;
+        }
+
+        a {
+          color: $white;
+
+          .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 3px;
+            font-size: 2rem;
+          }
+        }
       }
 
       span,

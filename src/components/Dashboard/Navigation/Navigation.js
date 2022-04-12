@@ -44,7 +44,7 @@ export default function DashboardNavigation({ avatarColor, avatarKid }) {
         </span>
         <span className="dashboard-nav-right-avatar">
           <Card bgColor={avatarColor} kidSecurity={avatarKid} />
-          <p>&darr;</p>
+          <p>&uarr;</p>
         </span>
       </div>
     </nav>

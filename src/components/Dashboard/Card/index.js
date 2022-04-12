@@ -15,7 +15,7 @@ function Card({ profileName, kidSecurity, bgColor }) {
           <div className="icon" style={{ backgroundColor: bgColor }}>
             <MdOutlineChildCare />
           </div>
-          <p className="profileName">{profileName}</p>
+          {profileName && <p className="profileName">{profileName}</p>}
         </a>
       </Link>
     );
@@ -32,7 +32,7 @@ function Card({ profileName, kidSecurity, bgColor }) {
         <div className="icon" style={{ backgroundColor: bgColor }}>
           <BsEmojiSmile />
         </div>
-        <p className="profileName">{profileName}</p>
+        {profileName && <p className="profileName">{profileName}</p>}
       </a>
     </Link>
   );

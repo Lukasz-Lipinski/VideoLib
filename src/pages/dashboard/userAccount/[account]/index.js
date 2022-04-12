@@ -1,21 +1,23 @@
 import { getSession } from "next-auth/react";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { Container, VideoCard } from "../../../../components";
 
 import DashboardNavigation from "../../../../components/Dashboard/Navigation/Navigation";
 import { connectDatebase } from "../../../api/functions";
 
-function AccountPage({ profiles }) {
+function AccountPage({ profiles, movies }) {
   const [profile, setProfile] = useState({});
   const router = useRouter();
   const { account } = router.query;
+  let lastIndex = 0;
 
   useEffect(() => {
     if (profiles) {
       const foundProfile = profiles.find(
         (profile) => profile.profileName === account
       );
-      console.log(foundProfile);
       setProfile(foundProfile);
     }
   }, [profiles, account]);
@@ -26,9 +28,20 @@ function AccountPage({ profiles }) {
         avatarColor={profile.bgColor}
         avatarKid={profile.kidSecurity}
       />
-      Account site
-      <p>here are informations of users</p>
-      {account}
+      <p>Szlagier</p>
+      <p>lists</p>
+      <Container className="dashboard">
+        <ul className="dashboard-container-viedoList">
+          {movies.map(
+            (movie, index) =>
+              index < 5 && (
+                <li key={movie.user_id}>
+                  <VideoCard {...movie} />
+                </li>
+              )
+          )}
+        </ul>
+      </Container>
     </div>
   );
 }
@@ -45,6 +58,13 @@ export async function getServerSideProps(ctx) {
     };
   }
 
+  const response = await fetch(
+    `https://${process.env.NEXT_PUBLIC_VIDEOLIB_BASE_URL}${process.env.NEXT_PUBLIC_VIDEOLIB_API_KEY}`
+  );
+
+  const data = await response.json();
+  const { hits: movies } = data;
+
   const { email } = session.user;
 
   const client = await connectDatebase();
@@ -57,6 +77,7 @@ export async function getServerSideProps(ctx) {
     props: {
       session,
       profiles,
+      movies,
     },
   };
 }

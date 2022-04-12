@@ -3,7 +3,7 @@ import {
   Navigation,
   Form,
   Benefits,
-  Container,
+  Questions,
   Footer,
   FAQ,
 } from "../components";
@@ -40,12 +40,12 @@ export default function Home({ homepage, homepageFooter, number }) {
 
         <Benefits>
           {benefits.map((el, index) => (
-            <Container key={`benefitsList--element--${index}`} {...el} />
+            <Questions key={`benefitsList--element--${index}`} {...el} />
           ))}
         </Benefits>
         <FAQ>
           {faq.map((el, index) => (
-            <Container {...el} key={`faqList--question--${index}`} isFAQ />
+            <Questions {...el} key={`faqList--question--${index}`} isFAQ />
           ))}
         </FAQ>
 

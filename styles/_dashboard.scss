@@ -199,11 +199,22 @@
 }
 
 .dashboard {
+  background-color: $border;
+
   &-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    .tags {
+      display: inline-flex;
+
+      span {
+        padding: 5px;
+        border-radius: 5px;
+      }
+    }
 
     &-viedoList {
       display: inline-flex;
@@ -214,9 +225,10 @@
       width: 95vw;
       overflow-y: hidden;
       overflow-x: hidden;
+      margin-block: 10px;
 
       &:hover {
-        overflow-x: scroll;
+        overflow-x: overlay;
       }
 
       li {

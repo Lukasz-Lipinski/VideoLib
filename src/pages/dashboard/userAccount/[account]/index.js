@@ -1,8 +1,7 @@
 import { getSession } from "next-auth/react";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Container, VideoCard } from "../../../../components";
+import { Container, VideoList } from "../../../../components";
 
 import DashboardNavigation from "../../../../components/Dashboard/Navigation/Navigation";
 import { connectDatebase } from "../../../api/functions";
@@ -11,7 +10,6 @@ function AccountPage({ profiles, movies }) {
   const [profile, setProfile] = useState({});
   const router = useRouter();
   const { account } = router.query;
-  let lastIndex = 0;
 
   useEffect(() => {
     if (profiles) {
@@ -31,16 +29,9 @@ function AccountPage({ profiles, movies }) {
       <p>Szlagier</p>
       <p>lists</p>
       <Container className="dashboard">
-        <ul className="dashboard-container-viedoList">
-          {movies.map(
-            (movie, index) =>
-              index < 5 && (
-                <li key={movie.user_id}>
-                  <VideoCard {...movie} />
-                </li>
-              )
-          )}
-        </ul>
+        <VideoList movies={movies} title="Recommended" end={5} />
+        {/* <VideoList movies={movies} title="Last watched" start={4} end={8} />
+        <VideoList movies={movies} title="News" start={8} end={12} /> */}
       </Container>
     </div>
   );

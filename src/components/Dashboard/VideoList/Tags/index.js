@@ -1,8 +1,8 @@
 export default function Tags({ tags, id }) {
   return (
     <div className="tags">
-      {[...tags.split(",")].map((tag) => (
-        <span key={`tags-lists-${id}`}>{tag}</span>
+      {[...tags.split(",")].map((tag, index) => (
+        <span key={`tags-lists-${id}-${index}-${tag}`}>{tag}</span>
       ))}
     </div>
   );

@@ -20,8 +20,8 @@ function VideoList({ movies, title, start, end }) {
         {selectedMovies.map((movie, index) => {
           if (index < end) {
             return (
-              <li key={`video-list-${movie.user_id}`}>
-                <VideoCard {...movie} />
+              <li key={`video-list-${movie.user_id}-${index}-title`}>
+                <VideoCard size="tiny" {...movie} />
                 <Tags tags={movie.tags} id={`${movie.id}-${movie.user_id}`} />
               </li>
             );

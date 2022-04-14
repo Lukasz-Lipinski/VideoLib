@@ -4,11 +4,14 @@ import { useEffect, useState } from "react";
 import { Container, VideoList } from "../../../../components";
 
 import DashboardNavigation from "../../../../components/Dashboard/Navigation/Navigation";
+import VideoCard from "../../../../components/Dashboard/VideoList/ViedoCard";
 import { connectDatebase } from "../../../api/functions";
 
 function AccountPage({ profiles, moviesDB }) {
   const [profile, setProfile] = useState();
   const [movies, setMovies] = useState([...new Set(moviesDB)]);
+  const [newestMovie, setNewestMovie] = useState();
+
   const router = useRouter();
   const { account } = router.query;
 
@@ -18,22 +21,27 @@ function AccountPage({ profiles, moviesDB }) {
         (profile) => profile.profileName === account
       );
       setProfile(foundProfile);
+      setNewestMovie(movies[2]);
     }
-  }, [profiles, account]);
+  }, [profiles, account, movies]);
 
   if (profile) {
+    console.log("newest", newestMovie);
+
     return (
       <div className="dashboard">
         <DashboardNavigation
           avatarColor={profile.bgColor}
           avatarKid={profile.kidSecurity}
         />
-        <p>Szlagier</p>
-        <p>lists</p>
+        <div className="dashboard-newest">
+          <VideoCard size="medium" videos={newestMovie.videos} />
+        </div>
         <Container className="dashboard">
           <VideoList movies={movies} title="Recommended" start={0} end={5} />
           <VideoList movies={movies} title="Last watched" start={5} end={10} />
           <VideoList movies={movies} title="News" start={10} end={15} />
+          <p>Footer</p>
         </Container>
       </div>
     );

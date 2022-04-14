@@ -6,8 +6,9 @@ import { Container, VideoList } from "../../../../components";
 import DashboardNavigation from "../../../../components/Dashboard/Navigation/Navigation";
 import { connectDatebase } from "../../../api/functions";
 
-function AccountPage({ profiles, movies }) {
-  const [profile, setProfile] = useState({});
+function AccountPage({ profiles, moviesDB }) {
+  const [profile, setProfile] = useState();
+  const [movies, setMovies] = useState([...new Set(moviesDB)]);
   const router = useRouter();
   const { account } = router.query;
 
@@ -20,21 +21,25 @@ function AccountPage({ profiles, movies }) {
     }
   }, [profiles, account]);
 
-  return (
-    <div className="dashboard">
-      <DashboardNavigation
-        avatarColor={profile.bgColor}
-        avatarKid={profile.kidSecurity}
-      />
-      <p>Szlagier</p>
-      <p>lists</p>
-      <Container className="dashboard">
-        <VideoList movies={movies} title="Recommended" end={5} />
-        {/* <VideoList movies={movies} title="Last watched" start={4} end={8} />
-        <VideoList movies={movies} title="News" start={8} end={12} /> */}
-      </Container>
-    </div>
-  );
+  if (profile) {
+    return (
+      <div className="dashboard">
+        <DashboardNavigation
+          avatarColor={profile.bgColor}
+          avatarKid={profile.kidSecurity}
+        />
+        <p>Szlagier</p>
+        <p>lists</p>
+        <Container className="dashboard">
+          <VideoList movies={movies} title="Recommended" start={0} end={5} />
+          <VideoList movies={movies} title="Last watched" start={5} end={10} />
+          <VideoList movies={movies} title="News" start={10} end={15} />
+        </Container>
+      </div>
+    );
+  }
+
+  return <div>loading...</div>;
 }
 
 export async function getServerSideProps(ctx) {
@@ -54,7 +59,7 @@ export async function getServerSideProps(ctx) {
   );
 
   const data = await response.json();
-  const { hits: movies } = data;
+  const { hits: moviesDB } = data;
 
   const { email } = session.user;
 
@@ -68,7 +73,7 @@ export async function getServerSideProps(ctx) {
     props: {
       session,
       profiles,
-      movies,
+      moviesDB,
     },
   };
 }

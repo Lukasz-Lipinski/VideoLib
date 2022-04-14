@@ -63,6 +63,13 @@
         display: flex;
       }
 
+      .icon-delete {
+        font-size: 8rem;
+        padding: 1rem;
+        display: flex;
+        color: $secondary-color;
+      }
+
       .profileName {
         text-align: center;
       }

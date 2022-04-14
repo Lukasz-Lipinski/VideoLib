@@ -8,10 +8,9 @@ function VideoList({ movies, title, start, end }) {
   useEffect(() => {
     if (selectedMovies) {
       const newMovies = movies.slice(start, end);
-
       setSelectedMovies(newMovies);
     }
-  }, [movies, selectedMovies, start, end]);
+  }, []);
 
   return (
     <>

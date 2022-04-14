@@ -10,6 +10,8 @@ export default function VideoCard({ size, videos, width = 320, height = 240 }) {
       </video>
     );
   }
+  const { url } = videoSize;
+
   return (
     <video width={width} height={height} controls>
       <source src={url} />

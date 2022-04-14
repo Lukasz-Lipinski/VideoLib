@@ -54,4 +54,8 @@ export default async function handler(req, res) {
     client.close();
     return;
   }
+
+  if (req.method === "DELETE") {
+    const {} = req.body;
+  }
 }

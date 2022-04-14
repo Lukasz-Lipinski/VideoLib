@@ -1,5 +1,6 @@
 import { getSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { IoAddSharp } from "react-icons/io5";
 
 import { Card, Logo } from "../../../components";
@@ -8,6 +9,7 @@ import { connectDatebase } from "../../api/functions";
 function Profiles({ user }) {
   const { profiles } = user;
   const router = useRouter();
+  const [isManagePanel, setIsManagePanel] = useState(false);
 
   const createProfile = () => {
     router.push("/dashboard/createProfile");
@@ -15,6 +17,10 @@ function Profiles({ user }) {
 
   const logoutHandle = async () => {
     await signOut();
+  };
+
+  const manageProfileHanlder = () => {
+    setIsManagePanel((state) => !state);
   };
 
   if (!profiles) {
@@ -40,14 +46,16 @@ function Profiles({ user }) {
       <ul>
         {profiles.map((profile, index) => (
           <li key={`profile-list-${index}`}>
-            <Card {...profile} />
+            <Card {...profile} isManagePanel={isManagePanel} />
           </li>
         ))}
         <li className="addProfile">
           <IoAddSharp onClick={createProfile} />
         </li>
       </ul>
-      <button className="manageProfile-btn">Manage profiles</button>
+      <button onClick={manageProfileHanlder} className="manageProfile-btn">
+        {isManagePanel ? "Back" : "Manage profiles"}
+      </button>
     </section>
   );
 }

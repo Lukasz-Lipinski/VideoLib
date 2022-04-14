@@ -23,7 +23,18 @@ function AccountPage({ profiles, moviesDB }) {
       setProfile(foundProfile);
       setNewestMovie(movies[2]);
     }
-  }, [profiles, account, movies]);
+
+    if (profile) {
+      if (profile.kidSecurity) {
+        const animations = movies.filter(
+          (animation) => animation.type === "animation"
+        );
+        console.log(animations);
+        setMovies(animations);
+        setNewestMovie(movies[0]);
+      }
+    }
+  }, [profile]);
 
   if (profile) {
     console.log("newest", newestMovie);

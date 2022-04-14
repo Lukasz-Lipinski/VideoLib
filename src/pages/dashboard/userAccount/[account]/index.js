@@ -8,6 +8,7 @@ import VideoCard from "../../../../components/Dashboard/VideoList/ViedoCard";
 import { connectDatebase } from "../../../api/functions";
 
 function AccountPage({ profiles, moviesDB }) {
+  console.log(profiles);
   // const [profile, setProfile] = useState();
   // const [movies, setMovies] = useState([...new Set(moviesDB)]);
   // const [newestMovie, setNewestMovie] = useState();

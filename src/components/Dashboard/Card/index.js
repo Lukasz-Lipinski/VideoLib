@@ -37,12 +37,7 @@ function Card({ profileName, kidSecurity, bgColor, isManagePanel }) {
         {profileName && <p className="profileName">{profileName}</p>}
       </div>
     ) : (
-      <Link
-        href={{
-          pathname: "/dashboard/userAccount/[profileName]",
-          query: { profileName },
-        }}
-      >
+      <Link href={`/dashboard/userAccount/${profileName}`}>
         <a>
           <div className={currClassName} style={{ backgroundColor: bgColor }}>
             <MdOutlineChildCare />

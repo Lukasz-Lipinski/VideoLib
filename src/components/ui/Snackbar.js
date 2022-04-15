@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useDispatch } from "react-redux";

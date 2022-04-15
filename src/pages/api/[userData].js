@@ -1,23 +1,41 @@
 import { connectDatebase, downloadUser } from "./functions";
 
 export default async function handler(req, res) {
-  let client;
-  let allUsersCollection;
+  if (req.method === "GET") {
+    const userEmail = req.query.userData;
 
-  try {
-    client = await connectDatebase();
-  } catch (error) {
-    res.status(501).json({ feedback: "Someting went wrong..." });
-    return;
+    let client;
+    let allUsersCollection;
+    let userProfiles;
+
+    try {
+      client = await connectDatebase();
+    } catch (error) {
+      res.status(501).json({ feedback: "Someting went wrong..." });
+      return;
+    }
+
+    try {
+      allUsersCollection = await downloadUser(client, "users");
+    } catch (error) {
+      res.status(502).json({ feedback: "Connection is invalid!" });
+      return;
+    }
+
+    if (userEmail.includes("@")) {
+      userProfiles = await client
+        .db()
+        .collection("users")
+        .findOne({ email: userEmail });
+
+      const { profiles } = userProfiles;
+
+      res.status(200).json({ feedback: "Success", profiles });
+      client.close();
+      return;
+    }
+
+    client.close();
+    res.status(200).json({ feedback: "Success", allUsersCollection });
   }
-
-  try {
-    allUsersCollection = await downloadUser(client, "users");
-  } catch (error) {
-    res.status(502).json({ feedback: "Connection is invalid!" });
-    return;
-  }
-
-  res.status(200).json({ feedback: "Success", allUsersCollection });
-  client.close();
 }

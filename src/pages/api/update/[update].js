@@ -56,6 +56,32 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "DELETE") {
-    const {} = req.body;
+    const { email, profileName } = req.body;
+
+    let client;
+
+    try {
+      client = await connectDatebase();
+    } catch (error) {
+      res.status(500).json({ message: "Invalid connection" });
+      return;
+    }
+
+    try {
+      await client
+        .db()
+        .collection("users")
+        .updateOne({ email }, { $pull: { profiles: { profileName } } });
+    } catch (error) {
+      client.close();
+      res.status(500).json({ message: "Error's connection, so sorry" });
+      return;
+    }
+
+    client.close();
+
+    res.status(200).json({
+      message: "profile has been deleted successfully",
+    });
   }
 }

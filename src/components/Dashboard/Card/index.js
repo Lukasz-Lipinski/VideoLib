@@ -3,24 +3,10 @@ import { useMemo } from "react";
 
 import { BsEmojiSmile } from "react-icons/bs";
 import { MdOutlineChildCare } from "react-icons/md";
-import { ImCross } from "react-icons/im";
+
+import CardAssignedToDelete from "./CardAssignedToDelete";
 
 function Card({ profileName, kidSecurity, bgColor, isManagePanel }) {
-  const deleteProfileHandler = () => {
-    const profileData = {
-      email,
-      profileName,
-    };
-
-    fetch("/api/update/delete-profile", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(profileData),
-    });
-  };
-
   const currClassName = useMemo(() => {
     if (isManagePanel) {
       return "icon-delete";
@@ -30,12 +16,11 @@ function Card({ profileName, kidSecurity, bgColor, isManagePanel }) {
 
   if (kidSecurity) {
     return isManagePanel ? (
-      <div onClick={deleteProfileHandler}>
-        <div className={currClassName} style={{ backgroundColor: bgColor }}>
-          <ImCross />
-        </div>
-        {profileName && <p className="profileName">{profileName}</p>}
-      </div>
+      <CardAssignedToDelete
+        currClassName={currClassName}
+        bgColor={bgColor}
+        profileName={profileName}
+      />
     ) : (
       <Link
         href={{
@@ -54,12 +39,11 @@ function Card({ profileName, kidSecurity, bgColor, isManagePanel }) {
   }
 
   return isManagePanel ? (
-    <div onClick={deleteProfileHandler}>
-      <div className={currClassName} style={{ backgroundColor: bgColor }}>
-        <ImCross />
-      </div>
-      {profileName && <p className="profileName">{profileName}</p>}
-    </div>
+    <CardAssignedToDelete
+      currClassName={currClassName}
+      bgColor={bgColor}
+      profileName={profileName}
+    />
   ) : (
     <Link
       href={{

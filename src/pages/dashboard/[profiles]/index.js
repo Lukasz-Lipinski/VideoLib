@@ -5,9 +5,10 @@ import { IoAddSharp } from "react-icons/io5";
 
 import { Card, Logo } from "../../../components";
 import { connectDatebase } from "../../api/functions";
+import useSWR from "swr";
 
 function Profiles({ user }) {
-  const { profiles } = user;
+  const { data, error } = useSWR(`/api/${user.email}`);
   const router = useRouter();
   const [isManagePanel, setIsManagePanel] = useState(false);
 
@@ -22,6 +23,12 @@ function Profiles({ user }) {
   const manageProfileHanlder = () => {
     setIsManagePanel((state) => !state);
   };
+
+  if (!data) {
+    return <p>Loading...</p>;
+  }
+
+  const { profiles } = data;
 
   if (!profiles) {
     return (

@@ -1,9 +1,7 @@
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { Container, VideoList } from "../../../../components";
-
-import DashboardNavigation from "../../../../components/Dashboard/Navigation/Navigation";
+import { Container, DashboardLayout, VideoList } from "../../../../components";
 import VideoCard from "../../../../components/Dashboard/VideoList/ViedoCard";
 import { connectDatebase } from "../../../api/functions";
 
@@ -37,21 +35,24 @@ function AccountPage({ profiles, moviesDB }) {
 
   if (profile) {
     return (
-      <div className="dashboard">
-        <DashboardNavigation
-          avatarColor={profile.bgColor}
-          avatarKid={profile.kidSecurity}
-        />
-        <div className="dashboard-newest">
-          <VideoCard size="medium" videos={newestMovie.videos} />
-        </div>
-        <Container className="dashboard">
-          <VideoList movies={movies} title="Recommended" start={0} end={5} />
-          <VideoList movies={movies} title="Last watched" start={5} end={10} />
-          <VideoList movies={movies} title="News" start={10} end={15} />
-          <p>Footer</p>
-        </Container>
-      </div>
+      <>
+        <DashboardLayout profile={profile}>
+          <div className="dashboard-newest">
+            <VideoCard size="medium" videos={newestMovie.videos} />
+          </div>
+          <Container className="dashboard">
+            <VideoList movies={movies} title="Recommended" start={0} end={5} />
+            <VideoList
+              movies={movies}
+              title="Last watched"
+              start={5}
+              end={10}
+            />
+            <VideoList movies={movies} title="News" start={10} end={15} />
+            <p>Footer</p>
+          </Container>
+        </DashboardLayout>
+      </>
     );
   }
 

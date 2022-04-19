@@ -1,8 +1,6 @@
 import Link from "next/link";
 
-function NavLink(props) {
-  const { label, href } = props;
-
+function NavLink({ label, href }) {
   return (
     <Link href={href}>
       <a>{label}</a>

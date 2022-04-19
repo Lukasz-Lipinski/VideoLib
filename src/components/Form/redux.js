@@ -4,11 +4,10 @@ const initialState = {
   step: 1,
   users: [],
   usersEmails: [],
-  user: {
-    isLogged: false,
-    email: "",
-    liked: [],
-    phoneNumber: "",
+  profile: {
+    pofileName: "",
+    bgColor: "",
+    kidSecurity: "",
   },
 };
 
@@ -34,10 +33,24 @@ const formSlicer = createSlice({
     resetStep: (state, action) => {
       state.step = 1;
     },
+    setProfile: (state, action) => {
+      const { bgColor, profileName, kidSecurity } = action.payload;
+
+      state.profile = {
+        bgColor,
+        profileName,
+        kidSecurity,
+      };
+    },
   },
 });
 
-export const { increamentStep, setUserStatus, setUsers, resetStep } =
-  formSlicer.actions;
+export const {
+  increamentStep,
+  setUserStatus,
+  setUsers,
+  resetStep,
+  setProfile,
+} = formSlicer.actions;
 
 export default formSlicer.reducer;

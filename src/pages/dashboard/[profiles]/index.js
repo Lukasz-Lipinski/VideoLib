@@ -1,11 +1,11 @@
 import { getSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoAddSharp } from "react-icons/io5";
+import useSWR from "swr";
 
 import { Card, Logo } from "../../../components";
 import { connectDatebase } from "../../api/functions";
-import useSWR from "swr";
 
 function Profiles({ user }) {
   const { data, error } = useSWR(`/api/${user.email}`);
@@ -43,6 +43,10 @@ function Profiles({ user }) {
     );
   }
 
+  const handleClick = () => {
+    console.log("clicked");
+  };
+
   return (
     <section className="profiles">
       <div className="profiles-nav">
@@ -53,7 +57,11 @@ function Profiles({ user }) {
       <ul>
         {profiles.map((profile, index) => (
           <li key={`profile-list-${index}`}>
-            <Card {...profile} isManagePanel={isManagePanel} />
+            <Card
+              onClick={handleClick}
+              {...profile}
+              isManagePanel={isManagePanel}
+            />
           </li>
         ))}
         <li className="addProfile">

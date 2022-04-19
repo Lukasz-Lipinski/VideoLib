@@ -6,7 +6,7 @@ import { Logo, Card } from "../../";
 import MyContext from "../../../context/index";
 import NavLink from "../../ui/NavLink/NavLink";
 
-export default function DashboardNavigation({ avatarColor, avatarKid }) {
+export default function DashboardNavigation({ profile }) {
   const myctx = useContext(MyContext);
   const [isSearcher, setIsSearcher] = useState(false);
 
@@ -21,9 +21,15 @@ export default function DashboardNavigation({ avatarColor, avatarKid }) {
       <div className="dashboard-nav-left">
         <Logo />
         <ul>
+          <li>
+            <NavLink label={"Main site"} href={"/dashboard"} />
+          </li>
           {nav.map((link, index) => (
             <li key={`dashborad-nav-link-${index}`}>
-              <NavLink {...link} />
+              <NavLink
+                href={`${link.href}${profile.profileName}/${link.label}`}
+                label={link.label}
+              />
             </li>
           ))}
         </ul>
@@ -43,7 +49,7 @@ export default function DashboardNavigation({ avatarColor, avatarKid }) {
           <VscBell />
         </span>
         <span className="dashboard-nav-right-avatar">
-          <Card bgColor={avatarColor} kidSecurity={avatarKid} />
+          <Card bgColor={profile.bgColor} />
           <p>&uarr;</p>
         </span>
       </div>

@@ -1,13 +1,27 @@
 import { getSession } from "next-auth/react";
+import useSWR from "swr";
 import { DashboardLayout } from "../../../components";
 import { connectDatebase } from "../../api/functions";
 
+const findMovie = (allMovies, expression) => {
+  const arr = [];
+  const allFoundMovies = arr.filter((movie) => {
+    //filter all movies by title and tags to return correctly-filltered movies
+  });
+};
+
 function GenerePage({ profile, result }) {
+  const url = `https://${process.env.NEXT_PUBLIC_VIDEOLIB_BASE_URL}${process.env.NEXT_PUBLIC_VIDEOLIB_API_KEY}`;
+  const { data, error } = useSWR(url);
+
+  if (!data) {
+    return <p>Loading...</p>;
+  }
+
+  console.log(data);
   return (
     <DashboardLayout profile={profile}>
       <h2>Here is a result for {result}</h2>
-      <p>Body</p>
-      <p>Footer</p>
     </DashboardLayout>
   );
 }
@@ -35,7 +49,6 @@ export const getServerSideProps = async (ctx) => {
 
   const { profiles } = userAccount;
   const [, account, result] = query.searcher;
-  console.log(account, result);
   let profile;
 
   for (const val of profiles) {

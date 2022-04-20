@@ -1,20 +1,14 @@
-import { useContext, useState } from "react";
-import { ImSearch } from "react-icons/im";
+import { useContext } from "react";
 import { VscBell } from "react-icons/vsc";
 
-import { Logo, Card } from "../../";
+import { Logo, Card, Searcher } from "../../";
 import MyContext from "../../../context/index";
 import NavLink from "../../ui/NavLink/NavLink";
 
 export default function DashboardNavigation({ profile }) {
   const myctx = useContext(MyContext);
-  const [isSearcher, setIsSearcher] = useState(false);
 
   const { nav } = myctx.content.userProfiles;
-
-  const setSearcherHandler = () => {
-    setIsSearcher((state) => !state);
-  };
 
   return (
     <nav className="dashboard-nav">
@@ -22,7 +16,10 @@ export default function DashboardNavigation({ profile }) {
         <Logo />
         <ul>
           <li>
-            <NavLink label={"Main site"} href={"/dashboard"} />
+            <NavLink
+              label={"Main site"}
+              href={`/dashboard/userAccount/${profile.profileName}`}
+            />
           </li>
           {nav.map((link, index) => (
             <li key={`dashborad-nav-link-${index}`}>
@@ -36,14 +33,7 @@ export default function DashboardNavigation({ profile }) {
       </div>
       <div className="dashboard-nav-right">
         <span>
-          {isSearcher ? (
-            <label>
-              <ImSearch onClick={setSearcherHandler} />
-              <input type="search" placeholder="Title, geners..." />
-            </label>
-          ) : (
-            <ImSearch onClick={setSearcherHandler} />
-          )}
+          <Searcher />
         </span>
         <span>
           <VscBell />

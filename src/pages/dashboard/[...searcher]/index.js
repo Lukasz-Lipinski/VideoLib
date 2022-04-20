@@ -1,10 +1,11 @@
 import { getSession } from "next-auth/react";
-import { DashboardLayout } from "../../../../../components";
-import { connectDatebase } from "../../../../api/functions";
+import { DashboardLayout } from "../../../components";
+import { connectDatebase } from "../../api/functions";
 
-function GenerePage({ profile }) {
+function GenerePage({ profile, result }) {
   return (
     <DashboardLayout profile={profile}>
+      <h2>Here is a result for {result}</h2>
       <p>Body</p>
       <p>Footer</p>
     </DashboardLayout>
@@ -14,15 +15,6 @@ function GenerePage({ profile }) {
 export const getServerSideProps = async (ctx) => {
   const { req, query } = ctx;
   const session = await getSession({ req });
-
-  if (query.genre === "/") {
-    return {
-      redirect: {
-        destination: "/",
-        pernament: false,
-      },
-    };
-  }
 
   if (!session) {
     return {
@@ -42,7 +34,8 @@ export const getServerSideProps = async (ctx) => {
     .findOne({ email: user.email });
 
   const { profiles } = userAccount;
-  const { account } = query;
+  const [, account, result] = query.searcher;
+  console.log(account, result);
   let profile;
 
   for (const val of profiles) {
@@ -55,6 +48,7 @@ export const getServerSideProps = async (ctx) => {
     props: {
       session,
       profile,
+      result,
     },
   };
 };

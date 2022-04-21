@@ -201,6 +201,23 @@
 .dashboard {
   background-color: $border;
 
+  .filred-movies-list {
+    display: inline-flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 20px 0;
+
+    @media only screen and (max-width: 695px) {
+      justify-content: center;
+    }
+
+    li {
+      margin: 0;
+      padding-inline: 10px;
+    }
+  }
+
   &-newest {
     width: 100%;
     height: 100vh;

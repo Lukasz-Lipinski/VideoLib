@@ -1,27 +1,52 @@
 import { getSession } from "next-auth/react";
+import { useEffect, useState, useCallback } from "react";
 import useSWR from "swr";
-import { DashboardLayout } from "../../../components";
-import { connectDatebase } from "../../api/functions";
 
-const findMovie = (allMovies, expression) => {
-  const arr = [];
-  const allFoundMovies = arr.filter((movie) => {
-    //filter all movies by title and tags to return correctly-filltered movies
-  });
-};
+import { DashboardLayout, VideoCard } from "../../../components";
+import { connectDatebase } from "../../api/functions";
 
 function GenerePage({ profile, result }) {
   const url = `https://${process.env.NEXT_PUBLIC_VIDEOLIB_BASE_URL}${process.env.NEXT_PUBLIC_VIDEOLIB_API_KEY}`;
   const { data, error } = useSWR(url);
+  const [filtredMovies, setFilredMovies] = useState([]);
+
+  const findMovie = useCallback((allMovies, expression) => {
+    const filtredByTag = allMovies.filter((movie) => {
+      const tags = [...movie.tags.split(",")].map((el) =>
+        el.trim().toLowerCase()
+      );
+      if (tags.includes(expression.trim().toLowerCase())) return movie;
+    });
+
+    return filtredByTag;
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      const movies = findMovie(data.hits, result);
+      setFilredMovies(movies);
+    }
+  }, [data, result, findMovie]);
 
   if (!data) {
     return <p>Loading...</p>;
   }
 
-  console.log(data);
   return (
     <DashboardLayout profile={profile}>
       <h2>Here is a result for {result}</h2>
+
+      {!!filtredMovies.length ? (
+        <ul className="filred-movies-list">
+          {filtredMovies.map((movie, index) => (
+            <li key={`filtred-movies-list-${index}`}>
+              <VideoCard videos={movie.videos} size="tiny" />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Nothing was found</p>
+      )}
     </DashboardLayout>
   );
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Tags from "./Tags";
 import VideoCard from "./ViedoCard";
 
-function VideoList({ movies, title, start, end }) {
+function VideoList({ movies, title, start = 0, end }) {
   const [selectedMovies, setSelectedMovies] = useState([]);
 
   useEffect(() => {

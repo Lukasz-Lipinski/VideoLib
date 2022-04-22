@@ -109,11 +109,23 @@ export const data = {
     },
     userProfiles: {
       nav: [
-        { label: "Serials", href: "/dashboard/userAccount/" },
-        { label: "Movies", href: "/dashboard/userAccount/" },
-        { label: "New and popular", href: "/dashboard/userAccount/" },
-        { label: "My list", href: "/dashboard/userAccount/" },
-        { label: "Sounds and lyrics", href: "/dashboard/userAccount/" },
+        { label: "Serials", href: "/dashboard/userAccount/", tag: "forest" },
+        { label: "Movies", href: "/dashboard/userAccount/", tag: "nature" },
+        {
+          label: "New and popular",
+          href: "/dashboard/userAccount/",
+          tag: "waterfall",
+        },
+        {
+          label: "My list",
+          href: "/dashboard/userAccount/",
+          tag: "landscape",
+        },
+        {
+          label: "Sounds and lyrics",
+          href: "/dashboard/userAccount/",
+          tag: "water",
+        },
       ],
     },
   },

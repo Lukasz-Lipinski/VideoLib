@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useMemo } from "react";
 
 import { BsEmojiSmile } from "react-icons/bs";
@@ -22,19 +21,12 @@ function Card({ profileName, kidSecurity, bgColor, isManagePanel }) {
         profileName={profileName}
       />
     ) : (
-      <Link
-        href={{
-          pathname: "/dashboard/userAccount/[profileName]",
-          query: { profileName },
-        }}
-      >
-        <a>
-          <div className={currClassName} style={{ backgroundColor: bgColor }}>
-            <MdOutlineChildCare />
-          </div>
-          {profileName && <p className="profileName">{profileName}</p>}
-        </a>
-      </Link>
+      <>
+        <div className={currClassName} style={{ backgroundColor: bgColor }}>
+          <MdOutlineChildCare />
+        </div>
+        {profileName && <p className="profileName">{profileName}</p>}
+      </>
     );
   }
 
@@ -45,19 +37,12 @@ function Card({ profileName, kidSecurity, bgColor, isManagePanel }) {
       profileName={profileName}
     />
   ) : (
-    <Link
-      href={{
-        pathname: "/dashboard/userAccount/[profileName]",
-        query: { profileName },
-      }}
-    >
-      <a>
-        <div className={currClassName} style={{ backgroundColor: bgColor }}>
-          <BsEmojiSmile />
-        </div>
-        {profileName && <p className="profileName">{profileName}</p>}
-      </a>
-    </Link>
+    <>
+      <div className={currClassName} style={{ backgroundColor: bgColor }}>
+        <BsEmojiSmile />
+      </div>
+      {profileName && <p className="profileName">{profileName}</p>}
+    </>
   );
 }
 

@@ -1,8 +1,9 @@
 import { getSession } from "next-auth/react";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 import { DashboardLayout, VideoCard } from "../../../components";
+import { filtredByTag } from "../../../context/functions";
 import { connectDatebase } from "../../api/functions";
 
 function GenerePage({ profile, result }) {
@@ -10,23 +11,12 @@ function GenerePage({ profile, result }) {
   const { data, error } = useSWR(url);
   const [filtredMovies, setFilredMovies] = useState([]);
 
-  const findMovie = useCallback((allMovies, expression) => {
-    const filtredByTag = allMovies.filter((movie) => {
-      const tags = [...movie.tags.split(",")].map((el) =>
-        el.trim().toLowerCase()
-      );
-      if (tags.includes(expression.trim().toLowerCase())) return movie;
-    });
-
-    return filtredByTag;
-  }, []);
-
   useEffect(() => {
     if (data) {
-      const movies = findMovie(data.hits, result);
+      const movies = filtredByTag(data.hits, result);
       setFilredMovies(movies);
     }
-  }, [data, result, findMovie]);
+  }, [data, result]);
 
   if (!data) {
     return <p>Loading...</p>;

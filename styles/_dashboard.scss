@@ -324,6 +324,12 @@
         justify-content: center;
         align-items: center;
 
+        .icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
         &:hover {
           p {
             transform: rotateZ(180deg);
@@ -339,9 +345,6 @@
           color: $white;
 
           .icon {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             border-radius: 3px;
             font-size: 2rem;
           }

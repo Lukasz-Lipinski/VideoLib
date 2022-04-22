@@ -1,12 +1,45 @@
+import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
-import { DashboardLayout } from "../../../../components";
-import { connectDatebase } from "../../../api/functions";
+import { useContext, useMemo } from "react";
 
-function GenerePage({ profile }) {
+import myContext from "../../../../context/index";
+import { DashboardLayout, VideoList } from "../../../../components";
+import { connectDatebase } from "../../../api/functions";
+import { filtredByTag } from "../../../../context/functions";
+
+function GenerePage({ profile, movies }) {
+  const router = useRouter();
+
+  const ctx = useContext(myContext);
+  const { nav } = ctx.content.userProfiles;
+
+  const [_, tag] = router.query.genre;
+
+  const filteredMovies = useMemo(() => {
+    let condition;
+
+    for (const link of nav) {
+      if (link.label === tag) {
+        condition = link.tag;
+      }
+    }
+    const foundMovies = filtredByTag(movies, condition);
+    const length = foundMovies.length;
+
+    return {
+      length,
+      movies: foundMovies,
+    };
+  }, [tag]);
+
   return (
     <DashboardLayout profile={profile}>
-      <p>Body</p>
-      <p>Footer</p>
+      <VideoList
+        movies={filteredMovies.movies}
+        title="Recommended"
+        start={0}
+        end={filteredMovies.length}
+      />
     </DashboardLayout>
   );
 }
@@ -42,10 +75,21 @@ export const getServerSideProps = async (ctx) => {
     }
   }
 
+  const response = await fetch(
+    `https://${process.env.NEXT_PUBLIC_VIDEOLIB_BASE_URL}${process.env.NEXT_PUBLIC_VIDEOLIB_API_KEY}`
+  );
+  let data, movies;
+
+  if (response.ok) {
+    data = await response.json();
+    movies = await data.hits;
+  }
+
   return {
     props: {
       session,
       profile,
+      movies,
     },
   };
 };

@@ -1,4 +1,5 @@
 import { getSession, signOut } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { IoAddSharp } from "react-icons/io5";
@@ -57,11 +58,20 @@ function Profiles({ user }) {
       <ul>
         {profiles.map((profile, index) => (
           <li key={`profile-list-${index}`}>
-            <Card
-              onClick={handleClick}
-              {...profile}
-              isManagePanel={isManagePanel}
-            />
+            <Link
+              href={{
+                pathname: "/dashboard/userAccount/[profileName]",
+                query: { profileName: profile.profileName },
+              }}
+            >
+              <a>
+                <Card
+                  onClick={handleClick}
+                  {...profile}
+                  isManagePanel={isManagePanel}
+                />
+              </a>
+            </Link>
           </li>
         ))}
         <li className="addProfile">

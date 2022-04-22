@@ -10,7 +10,7 @@ function VideoList({ movies, title, start = 0, end }) {
       const newMovies = movies.slice(start, end);
       setSelectedMovies(newMovies);
     }
-  }, []);
+  }, [movies]);
 
   return (
     <>

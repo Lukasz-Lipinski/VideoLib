@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
-import Tags from "./Tags";
+import { useEffect, useState, useMemo } from "react";
 import VideoCard from "./ViedoCard";
 
-function VideoList({ movies, title, start = 0, end }) {
+function VideoList({ movies, title, start = 0, end, inline }) {
   const [selectedMovies, setSelectedMovies] = useState([]);
 
   useEffect(() => {
@@ -12,16 +11,20 @@ function VideoList({ movies, title, start = 0, end }) {
     }
   }, [movies]);
 
+  const listInline = useMemo(() => {
+    const setupClass = inline ? "list-inline" : "dashboard-container-viedoList";
+    return setupClass;
+  }, [inline]);
+
   return (
     <>
       <h3>{title}</h3>
-      <ul className="dashboard-container-viedoList">
+      <ul className={`${listInline}`}>
         {selectedMovies.map((movie, index) => {
           if (index < end) {
             return (
               <li key={`video-list-${movie.user_id}-${index}-title`}>
-                <VideoCard size="tiny" {...movie} />
-                <Tags tags={movie.tags} id={`${movie.id}-${movie.user_id}`} />
+                <VideoCard size="tiny" movie={movie} />
               </li>
             );
           }

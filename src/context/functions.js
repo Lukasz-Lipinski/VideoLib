@@ -13,12 +13,13 @@ export const findNumber = (str) => {
 };
 
 export const filtredByTag = (allMovies, expression) => {
-  const filtredMovies = allMovies.filter((movie) => {
-    const tags = [...movie.tags.split(",")].map((el) =>
-      el.trim().toLowerCase()
-    );
-    if (tags.includes(expression.trim().toLowerCase())) return movie;
+  const formattedExpression = expression.trim().toLowerCase();
+
+  const filteredMovies = allMovies.filter((movie) => {
+    const { tags } = movie;
+
+    if (tags.includes(formattedExpression)) return movie;
   });
 
-  return filtredMovies;
+  return filteredMovies;
 };

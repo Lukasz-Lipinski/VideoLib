@@ -38,7 +38,7 @@ function AccountPage({ profiles, moviesDB }) {
       <>
         <DashboardLayout profile={profile}>
           <div className="dashboard-newest">
-            <VideoCard size="medium" videos={newestMovie.videos} />
+            <VideoCard size="medium" movie={newestMovie} />
           </div>
           <Container className="dashboard">
             <VideoList movies={movies} title="Recommended" start={0} end={5} />

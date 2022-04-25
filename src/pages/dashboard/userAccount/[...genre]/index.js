@@ -39,6 +39,7 @@ function GenerePage({ profile, movies }) {
         title="Recommended"
         start={0}
         end={filteredMovies.length}
+        inline
       />
     </DashboardLayout>
   );

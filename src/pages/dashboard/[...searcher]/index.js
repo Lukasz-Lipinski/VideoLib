@@ -11,6 +11,8 @@ function GenerePage({ profile, result }) {
   const { data, error } = useSWR(url);
   const [filtredMovies, setFilredMovies] = useState([]);
 
+  console.log(filtredMovies, result);
+
   useEffect(() => {
     if (data) {
       const movies = filtredByTag(data.hits, result);
@@ -30,7 +32,7 @@ function GenerePage({ profile, result }) {
         <ul className="filred-movies-list">
           {filtredMovies.map((movie, index) => (
             <li key={`filtred-movies-list-${index}`}>
-              <VideoCard videos={movie.videos} size="tiny" />
+              <VideoCard movie={movie} size="tiny" />
             </li>
           ))}
         </ul>

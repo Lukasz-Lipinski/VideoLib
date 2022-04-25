@@ -201,6 +201,26 @@
 .dashboard {
   background-color: $border;
 
+  .list-inline {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0 20px 20px;
+
+    li {
+      margin: 0;
+      transition: transform 0.4s;
+      transform: scale(1);
+
+      &:hover {
+        transform: scale(1.03);
+        transition: transform 0.4s;
+      }
+    }
+  }
+
   .filred-movies-list {
     display: inline-flex;
     flex-wrap: wrap;

@@ -1,4 +1,6 @@
-import { useContext } from "react";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useContext, useMemo } from "react";
 import { VscBell } from "react-icons/vsc";
 
 import { Logo, Card, Searcher } from "../../";
@@ -6,10 +8,25 @@ import MyContext from "../../../context/index";
 import NavLink from "../../ui/NavLink/NavLink";
 
 export default function DashboardNavigation({ profile }) {
+  const router = useRouter();
+  const { query } = router;
+
+  const account = useMemo(() => {
+    if (query.hasOwnProperty("account")) return ({ account } = query);
+    if (query.hasOwnProperty("genre")) {
+      const [account, _] = query.genre;
+      return account;
+    }
+  }, [query]);
+
   const { profileName, bgColor, kidSecurity } = profile;
   const myctx = useContext(MyContext);
 
   const { nav } = myctx.content.userProfiles;
+
+  const clickHandler = () => {
+    signOut();
+  };
 
   return (
     <nav className="dashboard-nav">
@@ -39,10 +56,27 @@ export default function DashboardNavigation({ profile }) {
         <span>
           <VscBell />
         </span>
-        <span className="dashboard-nav-right-avatar">
-          <Card bgColor={bgColor} kidSecurity={kidSecurity} />
-          <p>&uarr;</p>
-        </span>
+        <div className="dashboard-nav-right-dropdown">
+          <div className="dashboard-nav-right-dropdown_btn">
+            <Card bgColor={bgColor} kidSecurity={kidSecurity} />
+            <p>&uarr;</p>
+          </div>
+          <ul className="dashboard-nav-right-dropdown_content">
+            <li>
+              <NavLink
+                href={`/dashboard/userAccount/${account}`}
+                label="Settings"
+              />
+            </li>
+            <li>
+              <NavLink href={`/dashboard`} label="Chagne profile" />
+            </li>
+            <li>
+              <hr />
+            </li>
+            <li onClick={clickHandler}>Signout</li>
+          </ul>
+        </div>
       </div>
     </nav>
   );

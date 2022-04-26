@@ -36,7 +36,7 @@ function GenerePage({ profile, movies }) {
     <DashboardLayout profile={profile}>
       <VideoList
         movies={filteredMovies.movies}
-        title="Recommended"
+        title={tag}
         start={0}
         end={filteredMovies.length}
         inline

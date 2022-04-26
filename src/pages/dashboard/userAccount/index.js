@@ -1,10 +1,33 @@
-function userAccount() {
-  return (
-    <div>
-      UserAccount site.
-      <p>here you can change or create a profile</p>
-    </div>
-  );
+import { getSession } from "next-auth/react";
+function UserAccountPage() {
+  return <>Redirecting....</>;
 }
 
-export default userAccount;
+export async function getServerSideProps(ctx) {
+  const session = await getSession({ req: ctx.req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/signin",
+        pernament: false,
+      },
+    };
+  }
+
+  const { email } = session.user;
+
+  const account = email.substring(0, email.indexOf("@"));
+
+  return {
+    props: {
+      session,
+    },
+    redirect: {
+      destination: `/dashboard/${account}`,
+      pernament: false,
+    },
+  };
+}
+
+export default UserAccountPage;

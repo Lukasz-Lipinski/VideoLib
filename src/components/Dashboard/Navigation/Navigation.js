@@ -64,7 +64,7 @@ export default function DashboardNavigation({ profile }) {
           <ul className="dashboard-nav-right-dropdown_content">
             <li>
               <NavLink
-                href={`/dashboard/userAccount/${account}`}
+                href={`/dashboard/userAccount/profile-settings`}
                 label="Settings"
               />
             </li>

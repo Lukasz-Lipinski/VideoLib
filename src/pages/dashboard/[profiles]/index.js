@@ -34,12 +34,14 @@ function Profiles({ user }) {
   if (!profiles) {
     return (
       <div className="profiles">
-        <button onClick={logoutHandle}>Logout</button>
-        <div className="profiles-btn" onClick={createProfile}>
-          <p>Create a new profile</p>
-
-          <IoAddSharp onClick={createProfile} />
+        <div className="profiles-nav">
+          <Logo />
+          <button onClick={logoutHandle}>Logout</button>
         </div>
+        <button className="profiles-btn" onClick={createProfile}>
+          <p>Create a new profile</p>
+          <IoAddSharp onClick={createProfile} />
+        </button>
       </div>
     );
   }

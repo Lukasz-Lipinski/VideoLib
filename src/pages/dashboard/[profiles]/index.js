@@ -46,10 +46,6 @@ function Profiles({ user }) {
     );
   }
 
-  const handleClick = () => {
-    console.log("clicked");
-  };
-
   return (
     <section className="profiles">
       <div className="profiles-nav">
@@ -67,11 +63,7 @@ function Profiles({ user }) {
               }}
             >
               <a>
-                <Card
-                  onClick={handleClick}
-                  {...profile}
-                  isManagePanel={isManagePanel}
-                />
+                <Card {...profile} isManagePanel={isManagePanel} />
               </a>
             </Link>
           </li>

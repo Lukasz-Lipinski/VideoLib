@@ -4,7 +4,32 @@ import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import { connectDatebase } from "../../../../api/functions";
 
-function SettingsPage({ account }) {
+const Box = ({ option, email, title, price, account }) => {
+  return (
+    <div className="box">
+      <h3>{option.toUpperCase()}</h3>
+      {option === "abonament" && (
+        <>
+          <p>Your abonament: {title}</p>
+          <p>price per month: {price}$</p>
+        </>
+      )}
+      {option === "privacy" && (
+        <>
+          <p>Email: {email}</p>
+        </>
+      )}
+      {option === "profile" && (
+        <>
+          <p>Profile: {account}</p>
+        </>
+      )}
+    </div>
+  );
+};
+
+function SettingsPage({ user }) {
+  const { account, abonament, email } = user;
   const settingsOptions = ["Abonament", "Privacy", "Profile"];
   const [option, setOption] = useState(settingsOptions[0].toLowerCase());
 
@@ -13,6 +38,10 @@ function SettingsPage({ account }) {
 
   const changeOptionHandler = (e) => {
     const label = e.target.innerText.toLowerCase();
+    document.querySelectorAll("li").forEach((link) => {
+      link.classList.remove("active");
+    });
+    e.target.classList.add("active");
     setOption(label);
   };
 
@@ -37,7 +66,7 @@ function SettingsPage({ account }) {
                 query: { profile },
               }}
             >
-              Back
+              <a>Back</a>
             </Link>
           </li>
         </ul>
@@ -51,13 +80,13 @@ function SettingsPage({ account }) {
                 key={`settings-options-link-${index}`}
                 onClick={changeOptionHandler}
               >
-                <span>{link}</span>
+                {link}
               </li>
             ))}
           </ul>
         </div>
         <div className="settings-content_box">
-          {profile} {option}
+          <Box option={option} email={email} {...abonament} account={account} />
         </div>
       </main>
     </div>
@@ -91,9 +120,10 @@ export async function getServerSideProps(ctx) {
     props: {
       session,
       profileName,
-      account: {
+      user: {
         account,
         abonament,
+        email,
       },
     },
   };

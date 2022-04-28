@@ -7,10 +7,6 @@ function CreateProfilePage({ user }) {
   const { email } = user;
   const userEmail = email.slice(0, email.indexOf("@"));
 
-  const signoutHandler = () => {
-    signOut();
-  };
-
   return (
     <div className="createProfile">
       <div>

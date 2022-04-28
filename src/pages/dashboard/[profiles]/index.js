@@ -56,16 +56,7 @@ function Profiles({ user }) {
       <ul>
         {profiles.map((profile, index) => (
           <li key={`profile-list-${index}`}>
-            <Link
-              href={{
-                pathname: "/dashboard/userAccount/[profileName]",
-                query: { profileName: profile.profileName },
-              }}
-            >
-              <a>
-                <Card {...profile} isManagePanel={isManagePanel} />
-              </a>
-            </Link>
+            <Card {...profile} isManagePanel={isManagePanel} />
           </li>
         ))}
         <li className="addProfile">

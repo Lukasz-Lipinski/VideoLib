@@ -18,6 +18,7 @@ export { default as NavLink } from "./ui/NavLink/NavLink";
 export { default as Navigation } from "./ui/Navigation/Navigation";
 export { default as Layout } from "./ui/Layout/Layout";
 export { default as Searcher } from "./ui/Searcher";
+export { default as Box } from "./ui/Box";
 
 export { default as Card } from "./Dashboard/Card";
 export { default as CreateProfileForm } from "./Dashboard/CreateProfileForm";

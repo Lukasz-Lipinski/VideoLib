@@ -38,8 +38,9 @@ function CreateProfileForm({ user }) {
       }
       return {};
     },
-    onSubmit: function (values) {
+    onSubmit: (values) => {
       const { profileName, forKids } = values;
+
       setSnackbarData({
         className: "pending",
         status: "pending",

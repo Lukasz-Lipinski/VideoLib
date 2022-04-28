@@ -6,7 +6,8 @@ import { MdOutlineChildCare } from "react-icons/md";
 
 import CardAssignedToDelete from "./CardAssignedToDelete";
 
-function Card({ profileName, kidSecurity, bgColor, isManagePanel }) {
+function Card({ profileName, forKids, bgColor, isManagePanel }) {
+  console.log(forKids);
   const router = useRouter();
 
   const currClassName = useMemo(() => {
@@ -23,7 +24,7 @@ function Card({ profileName, kidSecurity, bgColor, isManagePanel }) {
     });
   };
 
-  if (kidSecurity) {
+  if (forKids) {
     return isManagePanel ? (
       <CardAssignedToDelete
         currClassName={currClassName}

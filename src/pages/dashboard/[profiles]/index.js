@@ -1,7 +1,6 @@
 import { getSession, signOut } from "next-auth/react";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IoAddSharp } from "react-icons/io5";
 import useSWR from "swr";
 

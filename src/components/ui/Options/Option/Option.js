@@ -24,7 +24,7 @@ export default function Option(props) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ user: { email }, abonament: { title, price } }),
+      body: JSON.stringify({ user: email, abonament: { title, price } }),
     });
 
     if (response.ok) {

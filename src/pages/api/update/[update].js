@@ -13,12 +13,11 @@ export default async function handler(req, res) {
         message: "Connection's error",
       });
     }
-
     let data;
 
-    if (update === "abonament") {
-      const { abonament } = req.body;
-      data = abonament;
+    if (update) {
+      const { [update]: userData } = req.body;
+      data = userData;
     } else {
       const { profileName, forKids, bgColor } = req.body;
       data = {
@@ -29,24 +28,88 @@ export default async function handler(req, res) {
     }
 
     const { user } = req.body;
+    let result;
 
-    const result = await client
-      .db()
-      .collection("users")
-      .updateOne(
-        { email: user.email },
-        {
-          $addToSet: {
-            [update]: data,
-          },
-        }
-      );
+    switch (update) {
+      case "abonament":
+        result = await client
+          .db()
+          .collection("users")
+          .updateOne(
+            { email: user },
+            {
+              $set: {
+                [update]: [{ ...data }],
+              },
+            }
+          );
+
+        break;
+
+      case "email":
+        result = await client
+          .db()
+          .collection("users")
+          .updateOne(
+            { email: user },
+            {
+              $set: {
+                [update]: data,
+              },
+            }
+          );
+        break;
+
+      case "profile":
+        const { profileName } = req.body;
+
+        const userAccount = await client
+          .db()
+          .collection("users")
+          .findOne({ email: user });
+
+        const { profiles } = userAccount;
+        profiles.forEach((element) => {
+          if (element.profileName === profileName) {
+            element.profileName = data;
+          }
+        });
+
+        result = await client
+          .db()
+          .collection("users")
+          .updateOne(
+            { email: user },
+            {
+              $set: {
+                profiles: profiles,
+              },
+            }
+          );
+
+        break;
+      default: {
+        result = await client
+          .db()
+          .collection("users")
+          .updateOne(
+            { email: user },
+            {
+              $addToSet: {
+                [update]: data,
+              },
+            }
+          );
+      }
+    }
+
+    console.log(result.modifiedCount);
 
     if (result.modifiedCount) {
       res.status(200).json({ message: "successfully", redirect: true });
     } else {
       res.status(202).json({
-        message: "A profile including the same name exsits",
+        message: "A profile including the same data exsits",
         redirect: false,
       });
     }

@@ -269,7 +269,7 @@
       }
     }
 
-    &-viedoList {
+    &-videoList {
       display: inline-flex;
       list-style: none;
       overflow: scroll;
@@ -278,7 +278,9 @@
       width: 95vw;
       overflow-y: hidden;
       overflow-x: hidden;
-      margin-block: 10px;
+      margin-block: 20px;
+      border-radius: 10px;
+      border-block: 3px solid $grey;
 
       &:hover {
         overflow-x: overlay;

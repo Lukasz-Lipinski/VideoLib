@@ -12,13 +12,13 @@ function VideoList({ movies, title, start = 0, end, inline }) {
   }, [movies]);
 
   const listInline = useMemo(() => {
-    const setupClass = inline ? "list-inline" : "dashboard-container-viedoList";
+    const setupClass = inline ? "list-inline" : "dashboard-container-videoList";
     return setupClass;
   }, [inline]);
 
   return (
     <>
-      <h3>{title}</h3>
+      <h2>{title}</h2>
       <ul className={`${listInline}`}>
         {selectedMovies.map((movie, index) => {
           if (index < end) {

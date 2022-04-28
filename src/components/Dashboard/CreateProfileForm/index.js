@@ -40,7 +40,6 @@ function CreateProfileForm({ user }) {
     },
     onSubmit: function (values) {
       const { profileName, forKids } = values;
-
       setSnackbarData({
         className: "pending",
         status: "pending",
@@ -53,7 +52,10 @@ function CreateProfileForm({ user }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ profileName, forKids, user, bgColor }),
+        body: JSON.stringify({
+          profiles: { profileName, forKids, bgColor },
+          user: user.email,
+        }),
       })
         .then((res) => {
           if (res.ok) {

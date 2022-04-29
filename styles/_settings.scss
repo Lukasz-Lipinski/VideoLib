@@ -3,6 +3,8 @@
 @use "variables"as *;
 
 .menu {
+  display: grid;
+  align-content: center;
   border: 1px solid black;
   padding: 20px;
   background-color: purple;
@@ -15,14 +17,27 @@
   li {
     padding: 20px;
 
-    span:hover {
+    &:hover {
       text-decoration: underline;
       color: $secondary-color;
+
     }
   }
 }
 
+.errorMsg {
+  color: $secondary-color;
+  padding: 16px 0;
+}
+
 .settings {
+  h3 {
+    margin: 10px 0;
+  }
+
+  p {
+    margin: 14px 0;
+  }
 
   ul {
     list-style: none;
@@ -48,6 +63,14 @@
         @extend %button;
         padding: 10px 20px;
         text-decoration: none;
+
+        &:hover {
+          @extend %button-hover;
+        }
+
+        &:active {
+          @extend %button-active;
+        }
       }
     }
   }
@@ -59,11 +82,53 @@
     gap: 20px;
 
     &_box {
-      padding: 25px 20px;
+      display: grid;
+      justify-content: center;
+      text-align: center;
+      padding: 25px 40px;
       border-radius: 10px;
       background-color: rgba(43, 43, 43, 0.95);
       border: $border;
       box-shadow: 20px 6px 20px 10px hsla(0, 0%, 0%, 0.5);
+
+      button {
+        @extend %button;
+        border: none;
+        padding: 10px 16px;
+
+        &:hover {
+          @extend %button-hover;
+        }
+
+        &:active {
+          @extend %button-active;
+        }
+      }
+
+      form {
+        display: grid;
+        justify-content: center;
+      }
+
+      select {
+        font-size: 1.1rem;
+        padding: 5px;
+        border-radius: 10px;
+        border: none;
+        background-color: $grey-light;
+        margin: 10px 0;
+      }
+
+      input {
+        margin-block: 10px;
+        min-width: 150px;
+        max-width: 250px;
+        padding: 6px 8px;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        border: none;
+        outline: none;
+      }
     }
   }
 }

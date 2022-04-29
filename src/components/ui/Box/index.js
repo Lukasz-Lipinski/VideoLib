@@ -19,6 +19,7 @@ const Box = ({ option, email, title, price }) => {
   const { account: profileName } = router.query;
 
   const updateData = async (option, data) => {
+    let newProfileName;
     setIsSnackbar(true);
 
     const response = await fetch(`/api/update/${option}`, {
@@ -36,11 +37,17 @@ const Box = ({ option, email, title, price }) => {
         message: "An update has done successfully",
       });
 
+      if (data.hasOwnProperty("profile")) {
+        newProfileName = data.profile;
+      }
+
+      newProfileName = profileName;
+
       option === "privacy"
         ? signOut()
         : router.push({
-            pathname: "/dashboard/userAccount/[profileName]",
-            query: { profileName },
+            pathname: "/dashboard/userAccount/[newProfileName]",
+            query: { newProfileName },
           });
 
       return;
@@ -61,7 +68,7 @@ const Box = ({ option, email, title, price }) => {
       if (!values.email.includes("@")) {
         errors.email = "Incorretly-written email address";
       }
-      if (values.email === email) {
+      if (values.email.trim() === email.trim()) {
         errors.email = "Assigned email wasn't changed";
       }
 
@@ -120,9 +127,11 @@ const Box = ({ option, email, title, price }) => {
     validate: (values) => {
       const errors = {};
 
-      if (values.profile === profileName) {
+      if (values.profile.trim() === profileName.trim()) {
         errors.profile = "The profile name hasn't been changed";
       }
+
+      if (!values.profile.trim()) errors.profile = "A field cannot be empty";
 
       return errors;
     },
@@ -139,49 +148,55 @@ const Box = ({ option, email, title, price }) => {
     <div className="box">
       <h3>{option.toUpperCase()}</h3>
       {option === "abonament" && (
-        <form onSubmit={abonamentValidation.handleSubmit}>
+        <>
           <p>Your abonament: {title}</p>
-          <p>price per month: {price}$</p>
-          <select
-            name="abonament"
-            onChange={abonamentValidation.handleChange}
-            value={abonamentValidation.values.abonament}
-          >
-            {abonament.map((opt, index) => (
-              <option key={`abonament-list-item-${index}`}>
-                {opt.title} - {opt.description.price}$
-              </option>
-            ))}
-          </select>
+          <p>Price per month: {price}$</p>
+          <form onSubmit={abonamentValidation.handleSubmit}>
+            <select
+              name="abonament"
+              onChange={abonamentValidation.handleChange}
+              value={abonamentValidation.values.abonament}
+            >
+              {abonament.map((opt, index) => (
+                <option key={`abonament-list-item-${index}`}>
+                  {opt.title} - {opt.description.price}$
+                </option>
+              ))}
+            </select>
 
-          <button type="submit">Save</button>
+            <button type="submit">Save</button>
+          </form>
           <div className="errorMsg">{abonamentValidation.errors.abonament}</div>
-        </form>
+        </>
       )}
       {option === "privacy" && (
-        <form onSubmit={emailValidation.handleSubmit}>
-          <p>Email: {email}</p>
-          <input
-            name="email"
-            onChange={emailValidation.handleChange}
-            value={emailValidation.values.email}
-          />
-          <button type="submit">Save</button>
+        <>
+          <form onSubmit={emailValidation.handleSubmit}>
+            <p>Email: {email}</p>
+            <input
+              name="email"
+              onChange={emailValidation.handleChange}
+              value={emailValidation.values.email}
+            />
+            <button type="submit">Save</button>
+          </form>
           <div className="errorMsg">{emailValidation.errors.email}</div>
-        </form>
+        </>
       )}
       {option === "profile" && (
-        <form onSubmit={profileValidation.handleSubmit}>
-          <p>Profile: {profileName}</p>
-          <input
-            name="profile"
-            type="text"
-            onChange={profileValidation.handleChange}
-            value={profileValidation.values.profile}
-          />
-          <button type="submit">Save</button>
+        <>
+          <form onSubmit={profileValidation.handleSubmit}>
+            <p>Profile: {profileName}</p>
+            <input
+              name="profile"
+              type="text"
+              onChange={profileValidation.handleChange}
+              value={profileValidation.values.profile}
+            />
+            <button type="submit">Save</button>
+          </form>
           <div className="errorMsg">{profileValidation.errors.profile}</div>
-        </form>
+        </>
       )}
       {isSnackbar && <Snackbar hideSnackbar={setIsSnackbar} {...snackbar} />}
     </div>

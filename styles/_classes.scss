@@ -1,4 +1,4 @@
-@use "variables" as *;
+@use "variables"as *;
 
 %button {
   padding: 2px 16px;
@@ -11,7 +11,7 @@
   cursor: pointer;
 }
 
-%button-hover{
+%button-hover {
   background-color: $secondary-color-light;
 }
 
@@ -21,10 +21,10 @@
 
 %logo {
   color: $secondary-color;
-    font-weight: bolder;
-    font-size: 2.8rem;
-    text-decoration: none;
-    cursor: pointer;
+  font-weight: bolder;
+  font-size: 2.8rem;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 %input {

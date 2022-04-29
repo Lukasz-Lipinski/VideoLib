@@ -76,18 +76,23 @@
   &-content {
     display: grid;
     justify-content: center;
-    grid-template-columns: 30vw 50vw;
-    gap: 20px;
+    grid-template-columns: minmax(180px, 15vw) minmax(400px, 30vw);
+    gap: 30px;
 
     &_box {
       display: grid;
       justify-content: center;
       text-align: center;
-      padding: 25px 40px;
       border-radius: 10px;
       background-color: rgba(43, 43, 43, 0.95);
       border: $border;
       box-shadow: 20px 6px 20px 10px hsla(0, 0%, 0%, 0.5);
+      padding: 3vw;
+
+      @media only screen and(max-width: 1300px) {
+        padding: 40px 0;
+
+      }
 
       button {
         @extend %button;

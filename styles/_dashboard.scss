@@ -200,6 +200,8 @@
 
 .dashboard {
   background-color: $border;
+  min-height: 100vh;
+
 
   .list-inline {
     display: grid;
@@ -208,6 +210,7 @@
     list-style: none;
     margin: 0;
     padding: 0 20px 20px;
+
 
     li {
       margin: 0;
@@ -281,6 +284,7 @@
       margin-block: 20px;
       border-radius: 10px;
       border-block: 3px solid $grey;
+      min-height: max-content;
 
       &:hover {
         overflow-x: overlay;

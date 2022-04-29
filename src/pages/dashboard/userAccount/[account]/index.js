@@ -49,7 +49,6 @@ function AccountPage({ profiles, moviesDB }) {
               end={10}
             />
             <VideoList movies={movies} title="News" start={10} end={15} />
-            <p>Footer</p>
           </Container>
         </DashboardLayout>
       </>
